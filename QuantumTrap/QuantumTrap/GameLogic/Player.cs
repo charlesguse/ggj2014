@@ -25,7 +25,7 @@ namespace QuantumTrap.GameLogic
 
         public void LoadContent(ContentManager content)
         {
-            _playerTexture = content.Load<Texture2D>("Content/img/bozon-default");
+            _playerTexture = content.Load<Texture2D>("img/bozon-default");
         }
 
         public void Update(GameTime gameTime, LevelManager levelManager)
@@ -34,7 +34,7 @@ namespace QuantumTrap.GameLogic
             {
                 Move();
             }
-            else if (DistanceLeftToTravel == 0 && Direction.Sum() > 0)
+            else if (DistanceLeftToTravel == 0 && Direction.Sum() != 0)
             {
                 DistanceLeftToTravel = DistanceToTravel;
                 Move();
@@ -43,9 +43,9 @@ namespace QuantumTrap.GameLogic
 
         private void Move()
         {
-            _drawablePosition.X += Direction.X;
+            _drawablePosition += Direction;
 
-            DistanceLeftToTravel -= Direction.Sum();
+            DistanceLeftToTravel -= 1;
 
             if (DistanceLeftToTravel <= 0)
             {
@@ -56,11 +56,11 @@ namespace QuantumTrap.GameLogic
             }
         }
 
-        public void HandleInput(InputState input)
+        public void HandleInput(InputState input, PlayerIndex playerIndex)
         {
             if (DistanceLeftToTravel == 0)
             {
-                Direction = GetMovementVector(input, PlayerIndex.One);
+                Direction = GetMovementVector(input, playerIndex);
             }
         }
 
