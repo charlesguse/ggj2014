@@ -16,7 +16,7 @@
     <Width>896</Width>
     <Height>896</Height>
   </LevelMaximumSize>
-  <Filename>C:\Development\OgmoTest\leveltest.oep</Filename>
+  <Filename>C:\Development\ggj2014\QuantumTrap\Levels\QuantumTrapLevelProject.oep</Filename>
   <AngleMode>Radians</AngleMode>
   <CameraEnabled>false</CameraEnabled>
   <CameraSize>
@@ -36,7 +36,7 @@
         <X>1</X>
         <Y>1</Y>
       </ScrollFactor>
-      <Color A="255" R="255" G="0" B="0" />
+      <Color A="255" R="236" G="0" B="0" />
       <ExportMode>Bitstring</ExportMode>
     </LayerDefinition>
     <LayerDefinition xsi:type="EntityLayerDefinition">
@@ -73,21 +73,37 @@
         <X>1</X>
         <Y>1</Y>
       </ScrollFactor>
-      <Color A="255" R="0" G="0" B="255" />
+      <Color A="255" R="0" G="0" B="225" />
+      <ExportMode>Bitstring</ExportMode>
+    </LayerDefinition>
+    <LayerDefinition xsi:type="GridLayerDefinition">
+      <Name>Green Tiles</Name>
+      <Grid>
+        <Width>64</Width>
+        <Height>64</Height>
+      </Grid>
+      <ScrollFactor>
+        <X>1</X>
+        <Y>1</Y>
+      </ScrollFactor>
+      <Color A="255" R="0" G="128" B="0" />
+      <ExportMode>Bitstring</ExportMode>
+    </LayerDefinition>
+    <LayerDefinition xsi:type="GridLayerDefinition">
+      <Name>Yellow Tiles</Name>
+      <Grid>
+        <Width>64</Width>
+        <Height>64</Height>
+      </Grid>
+      <ScrollFactor>
+        <X>1</X>
+        <Y>1</Y>
+      </ScrollFactor>
+      <Color A="255" R="221" G="221" B="0" />
       <ExportMode>Bitstring</ExportMode>
     </LayerDefinition>
   </LayerDefinitions>
-  <Tilesets>
-    <Tileset>
-      <Name>NewTileset0</Name>
-      <FilePath>tileset4.bmp</FilePath>
-      <TileSize>
-        <Width>64</Width>
-        <Height>64</Height>
-      </TileSize>
-      <TileSep>0</TileSep>
-    </Tileset>
-  </Tilesets>
+  <Tilesets />
   <EntityDefinitions>
     <EntityDefinition Name="Player" Limit="1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
       <Size>
