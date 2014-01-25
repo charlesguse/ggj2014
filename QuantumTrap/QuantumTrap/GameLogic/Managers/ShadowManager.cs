@@ -8,17 +8,17 @@ namespace QuantumTrap.GameLogic.Managers
     {
         public void Update(GameTime gameTime, LevelManager levelManager)
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
         }
 
-        public void HandleInput(InputState input)
+        public void HandleInput(InputState input, PlayerIndex playerIndex)
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
         }
     }
 }
