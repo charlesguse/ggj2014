@@ -7,6 +7,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.GamerServices;
+using QuantumTrap.ScreenManagers;
+using QuantumTrap.Screens;
 #endregion
 
 namespace QuantumTrap
@@ -16,14 +18,36 @@ namespace QuantumTrap
     /// </summary>
     public class Game1 : Game
     {
+        public static int WIDTH = 1280;
+        public static int HEIGHT = 720;
+
+        private const int TargetFrameRate = 60;
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        private ScreenManager screenManager;
 
         public Game1()
             : base()
         {
-            graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            graphics = new GraphicsDeviceManager(this);
+
+            graphics.PreferredBackBufferWidth = WIDTH;
+            graphics.PreferredBackBufferHeight = HEIGHT;
+
+            TargetElapsedTime = TimeSpan.FromTicks(TimeSpan.TicksPerSecond / TargetFrameRate);
+
+            // Create components.
+            screenManager = new ScreenManager(this);
+
+            Components.Add(screenManager);
+            Components.Add(new GamerServicesComponent(this));
+
+            // Activate the first screens.
+            screenManager.AddScreen(new BackgroundScreen(), null);
+            screenManager.AddScreen(new GameplayScreen(), null);
         }
 
         /// <summary>
