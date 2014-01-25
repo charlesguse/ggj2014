@@ -56,7 +56,7 @@ namespace QuantumTrap.GameLogic
             }
         }
 
-        public void HandleInput(GameTime gameTime, InputState input)
+        public void HandleInput(InputState input)
         {
             if (DistanceLeftToTravel == 0)
             {

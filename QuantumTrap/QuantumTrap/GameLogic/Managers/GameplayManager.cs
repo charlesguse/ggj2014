@@ -34,10 +34,10 @@ namespace QuantumTrap.GameLogic.Managers
             WinManager.Update(PlayerManager, ShadowManager);
         }
 
-        public void HandleInput(GameTime gameTime, InputState input)
+        public void HandleInput(InputState input)
         {
-            PlayerManager.HandleInput(gameTime, input);
-            ShadowManager.HandleInput(gameTime, input);
+            PlayerManager.HandleInput(input);
+            ShadowManager.HandleInput(input);
 
         }
 

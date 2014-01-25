@@ -11,7 +11,7 @@ namespace QuantumTrap.GameLogic.Managers
             throw new System.NotImplementedException();
         }
 
-        public void HandleInput(GameTime gameTime, InputState input)
+        public void HandleInput(InputState input)
         {
             throw new System.NotImplementedException();
         }
