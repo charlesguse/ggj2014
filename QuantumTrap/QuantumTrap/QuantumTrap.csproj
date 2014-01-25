@@ -75,9 +75,11 @@
   <ItemGroup>
     <Content Include="Icon.ico" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="Content\menufont.spritefont" />
+    <ProjectReference Include="..\QuantumTrap.Content\QuantumTrap.Content\QuantumTrap.Content.csproj">
+      <Project>{E5D2E610-4298-49B5-BD4D-CCF6CE408777}</Project>
+      <Name>QuantumTrap.Content</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
