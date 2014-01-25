@@ -15,8 +15,8 @@ namespace OgmoXNAPipelineExtensions.ContentItems.Values
         public BooleanValueTemplateContent(XmlNode node)
             : base(node)
         {
-            if (node.Attributes["default"] != null)
-                this.Default = bool.Parse(node.Attributes["default"].Value);
+            if (node.Attributes["Default"] != null)
+                this.Default = bool.Parse(node.Attributes["Default"].Value);
         }
     }
 }

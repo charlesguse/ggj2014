@@ -36,20 +36,20 @@ namespace OgmoXNAPipelineExtensions.ContentItems
             this.IsTiled = template.IsTiled;
             this.Origin = template.Origin;
             this.Source = template.Source;
-            if (node.Attributes["height"] != null)
-                this.Height = int.Parse(node.Attributes["height"].Value, CultureInfo.InvariantCulture);
+            if (node.Attributes["Height"] != null)
+                this.Height = int.Parse(node.Attributes["Height"].Value, CultureInfo.InvariantCulture);
             else
                 this.Height = template.Height;
-            if (node.Attributes["x"] != null)
-                this.Position.X = int.Parse(node.Attributes["x"].Value, CultureInfo.InvariantCulture);
-            if (node.Attributes["y"] != null)
-                this.Position.Y = int.Parse(node.Attributes["y"].Value, CultureInfo.InvariantCulture);
-            if (node.Attributes["width"] != null)
-                this.Width = int.Parse(node.Attributes["width"].Value, CultureInfo.InvariantCulture);
+            if (node.Attributes["X"] != null)
+                this.Position.X = int.Parse(node.Attributes["X"].Value, CultureInfo.InvariantCulture);
+            if (node.Attributes["Y"] != null)
+                this.Position.Y = int.Parse(node.Attributes["Y"].Value, CultureInfo.InvariantCulture);
+            if (node.Attributes["Width"] != null)
+                this.Width = int.Parse(node.Attributes["Width"].Value, CultureInfo.InvariantCulture);
             else
                 this.Width = template.Width;
-            if (node.Attributes["angle"] != null)
-                this.Rotation = float.Parse(node.Attributes["angle"].Value, CultureInfo.InvariantCulture);
+            if (node.Attributes["Angle"] != null)
+                this.Rotation = float.Parse(node.Attributes["Angle"].Value, CultureInfo.InvariantCulture);
             if (this.IsTiled)
             {
                 this.Source.Width = this.Width;

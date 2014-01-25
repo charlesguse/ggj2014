@@ -48,6 +48,7 @@ namespace OgmoXNAPipelineExtensions.ContentItems
                 }
             }
             // Height
+            var heightNode = levelNode.SelectSingleNode("height");
             this.Height = int.Parse(levelNode.SelectSingleNode("height").InnerText, CultureInfo.InvariantCulture);
             // Width
             this.Width = int.Parse(levelNode.SelectSingleNode("width").InnerText, CultureInfo.InvariantCulture);

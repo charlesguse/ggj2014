@@ -14,6 +14,7 @@ namespace OgmoXNAPipelineExtensions
     {
         public override OelContent Import(string filename, ContentImporterContext context)
         {
+            System.Diagnostics.Debugger.Launch();
             OelContent content = new OelContent();
             content.Document = new System.Xml.XmlDocument();
             content.Document.Load(filename);

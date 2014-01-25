@@ -26,17 +26,17 @@ namespace OgmoXNAPipelineExtensions.ContentItems.Layers
             if (settings.ExportAsObjects)
             {
                 this.RectangleData = new List<Rectangle>();
-                foreach (XmlNode rectNode in node.SelectNodes("rect"))
+                foreach (XmlNode rectNode in node.SelectNodes("Rect"))
                 {
                     Rectangle rect = Rectangle.Empty;
-                    if (rectNode.Attributes["x"] != null)
-                        rect.X = int.Parse(rectNode.Attributes["x"].Value, CultureInfo.InvariantCulture);
-                    if (rectNode.Attributes["y"] != null)
-                        rect.Y = int.Parse(rectNode.Attributes["y"].Value, CultureInfo.InvariantCulture);
-                    if (rectNode.Attributes["w"] != null)
-                        rect.Width = int.Parse(rectNode.Attributes["w"].Value, CultureInfo.InvariantCulture);
-                    if (rectNode.Attributes["h"] != null)
-                        rect.Height = int.Parse(rectNode.Attributes["h"].Value, CultureInfo.InvariantCulture);
+                    if (rectNode.Attributes["X"] != null)
+                        rect.X = int.Parse(rectNode.Attributes["X"].Value, CultureInfo.InvariantCulture);
+                    if (rectNode.Attributes["Y"] != null)
+                        rect.Y = int.Parse(rectNode.Attributes["Y"].Value, CultureInfo.InvariantCulture);
+                    if (rectNode.Attributes["W"] != null)
+                        rect.Width = int.Parse(rectNode.Attributes["W"].Value, CultureInfo.InvariantCulture);
+                    if (rectNode.Attributes["H"] != null)
+                        rect.Height = int.Parse(rectNode.Attributes["H"].Value, CultureInfo.InvariantCulture);
                     if (rect != Rectangle.Empty)
                         this.RectangleData.Add(rect);
                 }

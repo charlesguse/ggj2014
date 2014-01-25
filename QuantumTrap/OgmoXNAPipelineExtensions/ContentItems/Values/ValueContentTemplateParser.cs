@@ -13,18 +13,18 @@ namespace OgmoXNAPipelineExtensions.ContentItems.Values
             ValueTemplateContent valueContent = null;
             switch (node.Name)
             {
-                case "boolean":
+                case "Boolean":
                     valueContent = new BooleanValueTemplateContent(node);
                     break;
-                case "integer":
+                case "Integer":
                     valueContent = new IntegerValueTemplateContent(node);
                     break;
-                case "number":
+                case "Number":
                     valueContent = new NumberValueTemplateContent(node);
                     break;
-                case "string":
+                case "String":
                 // Fallthrough.
-                case "text":
+                case "Text":
                     valueContent = new StringValueTemplateContent(node);
                     break;
             }

@@ -16,8 +16,8 @@ namespace OgmoXNAPipelineExtensions.ContentItems.Values
 
         protected ValueTemplateContent(XmlNode node)
         {
-            if(node.Attributes["name"] != null)
-                this.Name = node.Attributes["name"].Value;
+            if(node.Attributes["Name"] != null)
+                this.Name = node.Attributes["Name"].Value;
         }
     }
 }
