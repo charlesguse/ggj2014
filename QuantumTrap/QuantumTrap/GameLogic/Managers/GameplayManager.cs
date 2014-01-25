@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using QuantumTrap.ScreenManagers;
 
@@ -22,6 +20,11 @@ namespace QuantumTrap.GameLogic.Managers
             WinManager = new WinManager();
         }
 
+        public void LoadContent(ContentManager content)
+        {
+            PlayerManager.LoadContent(content);
+            LevelManager.LoadContent(content);
+        }
 
         public void Update(GameTime gameTime)
         {

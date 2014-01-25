@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace QuantumTrap.GameLogic.Managers
@@ -10,6 +11,11 @@ namespace QuantumTrap.GameLogic.Managers
         public LevelManager()
         {
             Level = new Level();
+        }
+
+        public void LoadContent(ContentManager content)
+        {
+            Level.LoadContent(content);
         }
 
         public void Update(GameTime gameTime)
