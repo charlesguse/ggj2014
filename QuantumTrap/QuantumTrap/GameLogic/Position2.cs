@@ -1,3 +1,5 @@
+using Microsoft.Xna.Framework;
+
 namespace QuantumTrap.GameLogic
 {
     public struct Position2
@@ -22,11 +24,11 @@ namespace QuantumTrap.GameLogic
             return position1;
         }
 
-        public static Position2 operator -(Position2 position1)
+        public static Position2 operator -(Position2 position)
         {
-            position1.X = -position1.X;
-            position1.Y = -position1.Y;
-            return position1;
+            position.X = -position.X;
+            position.Y = -position.Y;
+            return position;
         }
 
         public static Position2 operator -(Position2 position1, Position2 position2)
@@ -39,6 +41,12 @@ namespace QuantumTrap.GameLogic
             position1.X *= position2.X;
             position1.Y *= position2.Y;
             return position1;
+        }
+
+        public static implicit operator Vector2(Position2 position)  // explicit byte to digit conversion operator
+        {
+            var vector = new Vector2 {X = position.X, Y = position.Y};
+            return vector;
         }
     }
 }

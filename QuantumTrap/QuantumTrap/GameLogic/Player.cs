@@ -1,5 +1,6 @@
 using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using QuantumTrap.GameLogic.Managers;
@@ -9,11 +10,23 @@ namespace QuantumTrap.GameLogic
 {
     public class Player
     {
-        private Position2 drawablePosition;
         Position2 Position { get; set; }
         int DistanceToTravel { get { return 64; } }
         int DistanceLeftToTravel { get; set; }
         Position2 Direction { get; set; }
+        private Texture2D _playerTexture;
+        private Position2 _drawablePosition;
+
+        public Player(Position2 startingLocation)
+        {
+            Position = startingLocation;
+            _drawablePosition = ConvertToDrawablePosition(Position);
+        }
+
+        public void LoadContent(ContentManager content)
+        {
+            _playerTexture = content.Load<Texture2D>("Content/img/bozon-default");
+        }
 
         public void Update(GameTime gameTime, LevelManager levelManager)
         {
@@ -30,7 +43,7 @@ namespace QuantumTrap.GameLogic
 
         private void Move()
         {
-            drawablePosition.X += Direction.X;
+            _drawablePosition.X += Direction.X;
 
             DistanceLeftToTravel -= Direction.Sum();
 
@@ -38,6 +51,7 @@ namespace QuantumTrap.GameLogic
             {
                 DistanceLeftToTravel = 0;
                 Position += Direction;
+                _drawablePosition = ConvertToDrawablePosition(Position);
                 Direction = Position2.Zero;
             }
         }
@@ -119,7 +133,16 @@ namespace QuantumTrap.GameLogic
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            throw new NotImplementedException();
+            spriteBatch.Draw(_playerTexture, _drawablePosition, Color.White);
+        }
+
+        private static Position2 ConvertToDrawablePosition(Position2 position)
+        {
+            var drawablePosition = position;
+            drawablePosition.X *= 64;
+            drawablePosition.Y *= 64;
+
+            return drawablePosition;
         }
     }
 }

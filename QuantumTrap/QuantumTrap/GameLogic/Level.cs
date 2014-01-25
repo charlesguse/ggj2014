@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace QuantumTrap.GameLogic
@@ -25,6 +26,14 @@ namespace QuantumTrap.GameLogic
             foreach (var tile in TileMap)
             {
                 tile.Draw(gameTime, spriteBatch);
+            }
+        }
+
+        public void LoadContent(ContentManager content)
+        {
+            foreach (var tile in TileMap)
+            {
+                tile.LoadContent(content);
             }
         }
     }
