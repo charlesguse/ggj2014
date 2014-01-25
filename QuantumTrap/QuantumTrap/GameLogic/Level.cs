@@ -6,34 +6,52 @@ namespace QuantumTrap.GameLogic
 {
     public class Level
     {
-        public Tile[,] TileMap { get; set; }
+        public Tile[][] TileMap { get; set; }
 
         public Level()
         {
-            TileMap = new Tile[20, 20];
-        }
+            TileMap = new Tile[20][];
 
-        public void Update(GameTime gameTime)
-        {
-            foreach (var tile in TileMap)
+            for (int x = 0; x < TileMap.Length; x++)
             {
-                tile.Update(gameTime);
-            }
-        }
-
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-        {
-            foreach (var tile in TileMap)
-            {
-                tile.Draw(gameTime, spriteBatch);
+                TileMap[x] = new Tile[20];
+                for (int y = 0; y < TileMap[x].Length; y++)
+                {
+                    TileMap[x][y] = new Tile();
+                }
             }
         }
 
         public void LoadContent(ContentManager content)
         {
-            foreach (var tile in TileMap)
+            for (int x = 0; x < TileMap.Length; x++)
             {
-                tile.LoadContent(content);
+                for (int y = 0; y < TileMap[x].Length; y++)
+                {
+                    TileMap[x][y].LoadContent(content);
+                }
+            }
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            for (int x = 0; x < TileMap.Length; x++)
+            {
+                for (int y = 0; y < TileMap[x].Length; y++)
+                {
+                    TileMap[x][y].Update(gameTime);
+                }
+            }
+        }
+
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            for (int x = 0; x < TileMap.Length; x++)
+            {
+                for (int y = 0; y < TileMap[x].Length; y++)
+                {
+                    TileMap[x][y].Draw(gameTime, spriteBatch);
+                }
             }
         }
     }

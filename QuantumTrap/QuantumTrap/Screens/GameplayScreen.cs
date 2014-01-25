@@ -28,17 +28,10 @@ namespace QuantumTrap.Screens
     class GameplayScreen : GameScreen
     {
         #region Fields
-
         ContentManager _content;
-        SpriteFont _gameFont;
-
-        Vector2 _playerPosition = new Vector2(100, 100);
-        Vector2 _enemyPosition = new Vector2(100, 100);
-
-        readonly Random _random = new Random();
 
         float _pauseAlpha;
-        private GameplayManager _gameplayManager;
+        private readonly GameplayManager _gameplayManager;
 
         #endregion
 
@@ -51,8 +44,6 @@ namespace QuantumTrap.Screens
         public GameplayScreen()
         {
             _gameplayManager = new GameplayManager();
-            //TransitionOnTime = TimeSpan.FromSeconds(1.5);
-            //TransitionOffTime = TimeSpan.FromSeconds(0.5);
         }
 
 
@@ -118,7 +109,6 @@ namespace QuantumTrap.Screens
             // Look up inputs for the active player profile.
             int playerIndex = ControllingPlayer != null ? (int)ControllingPlayer.Value : 0;
 
-            KeyboardState keyboardState = input.CurrentKeyboardStates[playerIndex];
             GamePadState gamePadState = input.CurrentGamePadStates[playerIndex];
 
             // The game pauses either if the user presses the pause button, or if
@@ -134,7 +124,7 @@ namespace QuantumTrap.Screens
             }
             else
             {
-                _gameplayManager.HandleInput(input);
+                _gameplayManager.HandleInput(input, (PlayerIndex)playerIndex);
             }
         }
 
@@ -144,21 +134,11 @@ namespace QuantumTrap.Screens
         /// </summary>
         public override void Draw(GameTime gameTime)
         {
-            // This game has a blue background. Why? Because!
-            ScreenManager.GraphicsDevice.Clear(ClearOptions.Target,
-                                               Color.CornflowerBlue, 0, 0);
+            //ScreenManager.GraphicsDevice.Clear(ClearOptions.Target,
+            //                                   Color.CornflowerBlue, 0, 0);
 
-            // Our player and enemy are both actually just text strings.
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
-
-            spriteBatch.Begin();
-
-            spriteBatch.DrawString(_gameFont, "// TODO", _playerPosition, Color.Green);
-
-            spriteBatch.DrawString(_gameFont, "Insert Gameplay Here",
-                                   _enemyPosition, Color.DarkRed);
-
-            spriteBatch.End();
+            _gameplayManager.Draw(gameTime, spriteBatch);
 
             // If the game is transitioning on or off, fade it out to black.
             if (TransitionPosition > 0 || _pauseAlpha > 0)
