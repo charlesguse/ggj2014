@@ -14,6 +14,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using QuantumTrap.GameLogic.Managers;
 using QuantumTrap.ScreenManagers;
 #endregion
 
@@ -28,15 +29,16 @@ namespace QuantumTrap.Screens
     {
         #region Fields
 
-        ContentManager content;
-        SpriteFont gameFont;
+        ContentManager _content;
+        SpriteFont _gameFont;
 
-        Vector2 playerPosition = new Vector2(100, 100);
-        Vector2 enemyPosition = new Vector2(100, 100);
+        Vector2 _playerPosition = new Vector2(100, 100);
+        Vector2 _enemyPosition = new Vector2(100, 100);
 
-        Random random = new Random();
+        readonly Random _random = new Random();
 
-        float pauseAlpha;
+        float _pauseAlpha;
+        private GameplayManager _gameplayManager;
 
         #endregion
 
@@ -48,8 +50,9 @@ namespace QuantumTrap.Screens
         /// </summary>
         public GameplayScreen()
         {
-            TransitionOnTime = TimeSpan.FromSeconds(1.5);
-            TransitionOffTime = TimeSpan.FromSeconds(0.5);
+            _gameplayManager = new GameplayManager();
+            //TransitionOnTime = TimeSpan.FromSeconds(1.5);
+            //TransitionOffTime = TimeSpan.FromSeconds(0.5);
         }
 
 
@@ -58,19 +61,10 @@ namespace QuantumTrap.Screens
         /// </summary>
         public override void LoadContent()
         {
-            if (content == null)
-                content = new ContentManager(ScreenManager.Game.Services, "Content");
+            if (_content == null)
+                _content = new ContentManager(ScreenManager.Game.Services, "Content");
 
-            gameFont = content.Load<SpriteFont>("font/gamefont");
-
-            // A real game would probably have more content than this sample, so
-            // it would take longer to load. We simulate that by delaying for a
-            // while, giving you a chance to admire the beautiful loading screen.
-            Thread.Sleep(1000);
-
-            // once the load has finished, we use ResetElapsedTime to tell the game's
-            // timing mechanism that we have just finished a very long frame, and that
-            // it should not try to catch up.
+            _gameplayManager.LoadContent(_content);
             ScreenManager.Game.ResetElapsedTime();
         }
 
@@ -80,7 +74,7 @@ namespace QuantumTrap.Screens
         /// </summary>
         public override void UnloadContent()
         {
-            content.Unload();
+            _content.Unload();
         }
 
 
@@ -101,27 +95,13 @@ namespace QuantumTrap.Screens
 
             // Gradually fade in or out depending on whether we are covered by the pause screen.
             if (coveredByOtherScreen)
-                pauseAlpha = Math.Min(pauseAlpha + 1f / 32, 1);
+                _pauseAlpha = Math.Min(_pauseAlpha + 1f / 32, 1);
             else
-                pauseAlpha = Math.Max(pauseAlpha - 1f / 32, 0);
+                _pauseAlpha = Math.Max(_pauseAlpha - 1f / 32, 0);
 
             if (IsActive)
             {
-                // Apply some random jitter to make the enemy move around.
-                const float randomization = 10;
-
-                enemyPosition.X += (float)(random.NextDouble() - 0.5) * randomization;
-                enemyPosition.Y += (float)(random.NextDouble() - 0.5) * randomization;
-
-                // Apply a stabilizing force to stop the enemy moving off the screen.
-                Vector2 targetPosition = new Vector2(
-                    ScreenManager.GraphicsDevice.Viewport.Width / 2 - gameFont.MeasureString("Insert Gameplay Here").X / 2, 
-                    200);
-
-                enemyPosition = Vector2.Lerp(enemyPosition, targetPosition, 0.05f);
-
-                // TODO: this game isn't very fun! You could probably improve
-                // it by inserting something more interesting in this space :-)
+                _gameplayManager.Update(gameTime);
             }
         }
 
@@ -154,30 +134,7 @@ namespace QuantumTrap.Screens
             }
             else
             {
-                // Otherwise move the player position.
-                Vector2 movement = Vector2.Zero;
-
-                if (keyboardState.IsKeyDown(Keys.Left))
-                    movement.X--;
-
-                if (keyboardState.IsKeyDown(Keys.Right))
-                    movement.X++;
-
-                if (keyboardState.IsKeyDown(Keys.Up))
-                    movement.Y--;
-
-                if (keyboardState.IsKeyDown(Keys.Down))
-                    movement.Y++;
-
-                Vector2 thumbstick = gamePadState.ThumbSticks.Left;
-
-                movement.X += thumbstick.X;
-                movement.Y -= thumbstick.Y;
-
-                if (movement.Length() > 1)
-                    movement.Normalize();
-
-                playerPosition += movement * 2;
+                _gameplayManager.HandleInput(input);
             }
         }
 
@@ -196,17 +153,17 @@ namespace QuantumTrap.Screens
 
             spriteBatch.Begin();
 
-            spriteBatch.DrawString(gameFont, "// TODO", playerPosition, Color.Green);
+            spriteBatch.DrawString(_gameFont, "// TODO", _playerPosition, Color.Green);
 
-            spriteBatch.DrawString(gameFont, "Insert Gameplay Here",
-                                   enemyPosition, Color.DarkRed);
+            spriteBatch.DrawString(_gameFont, "Insert Gameplay Here",
+                                   _enemyPosition, Color.DarkRed);
 
             spriteBatch.End();
 
             // If the game is transitioning on or off, fade it out to black.
-            if (TransitionPosition > 0 || pauseAlpha > 0)
+            if (TransitionPosition > 0 || _pauseAlpha > 0)
             {
-                float alpha = MathHelper.Lerp(1f - TransitionAlpha, 1f, pauseAlpha / 2);
+                float alpha = MathHelper.Lerp(1f - TransitionAlpha, 1f, _pauseAlpha / 2);
 
                 ScreenManager.FadeBackBufferToBlack(alpha);
             }
