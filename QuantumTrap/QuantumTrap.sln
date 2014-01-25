@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2010
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuantumTrap", "QuantumTrap\QuantumTrap.csproj", "{1ACAA507-11F1-48E4-AE6C-91854C609068}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OgmoXna", "OgmoXna\OgmoXna.csproj", "{43368A7B-4DF4-4F98-8935-49800E4AD0B7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuantumTrap.Content", "QuantumTrap.Content\QuantumTrap.Content\QuantumTrap.Content.csproj", "{E5D2E610-4298-49B5-BD4D-CCF6CE408777}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "QuantumTrap.ContentContent", "QuantumTrap.Content\QuantumTrap.ContentContent\QuantumTrap.ContentContent.contentproj", "{2C21D323-C891-4C44-9FEA-A7E583A77CE3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuantumTrap.ContentContent", "QuantumTrap.Content\QuantumTrap.ContentContent\QuantumTrap.ContentContent.contentproj", "{2C21D323-C891-4C44-9FEA-A7E583A77CE3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -167,6 +167,7 @@ Global
 		{2C21D323-C891-4C44-9FEA-A7E583A77CE3}.Debug|Any CPU.ActiveCfg = PSM|Any CPU
 		{2C21D323-C891-4C44-9FEA-A7E583A77CE3}.Debug|Mixed Platforms.ActiveCfg = PSM|Any CPU
 		{2C21D323-C891-4C44-9FEA-A7E583A77CE3}.Debug|x86.ActiveCfg = PSM|Any CPU
+		{2C21D323-C891-4C44-9FEA-A7E583A77CE3}.Debug|x86.Build.0 = PSM|Any CPU
 		{2C21D323-C891-4C44-9FEA-A7E583A77CE3}.iOS|Any CPU.ActiveCfg = iOS|Any CPU
 		{2C21D323-C891-4C44-9FEA-A7E583A77CE3}.iOS|Mixed Platforms.ActiveCfg = iOS|Any CPU
 		{2C21D323-C891-4C44-9FEA-A7E583A77CE3}.iOS|x86.ActiveCfg = iOS|Any CPU

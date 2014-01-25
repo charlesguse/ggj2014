@@ -77,7 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\QuantumTrap.Content\QuantumTrap.Content\QuantumTrap.Content.csproj">
-      <Project>{E5D2E610-4298-49B5-BD4D-CCF6CE408777}</Project>
+      <Project>{e5d2e610-4298-49b5-bd4d-ccf6ce408777}</Project>
       <Name>QuantumTrap.Content</Name>
     </ProjectReference>
   </ItemGroup>
