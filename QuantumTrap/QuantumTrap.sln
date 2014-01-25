@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuantumTrap", "QuantumTrap.csproj", "{1ACAA507-11F1-48E4-AE6C-91854C609068}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuantumTrap", "QuantumTrap\QuantumTrap.csproj", "{1ACAA507-11F1-48E4-AE6C-91854C609068}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
