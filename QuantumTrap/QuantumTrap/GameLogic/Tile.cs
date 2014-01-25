@@ -9,7 +9,7 @@ namespace QuantumTrap.GameLogic
 
         public void Update(GameTime gameTime)
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)

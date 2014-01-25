@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace QuantumTrap.GameLogic
@@ -13,17 +9,14 @@ namespace QuantumTrap.GameLogic
 
         public Level()
         {
-            TileMap = new Tile[20,20];
+            TileMap = new Tile[20, 20];
         }
 
         public void Update(GameTime gameTime)
         {
             foreach (var tile in TileMap)
             {
-                foreach (var tile in TileMap)
-                {
-                    tile.Update(gameTime);
-                }
+                tile.Update(gameTime);
             }
         }
 

@@ -39,7 +39,9 @@
     <Compile Include="GameLogic\Level.cs" />
     <Compile Include="GameLogic\Managers\GameplayManager.cs" />
     <Compile Include="GameLogic\Managers\LevelManager.cs" />
+    <Compile Include="GameLogic\Player.cs" />
     <Compile Include="GameLogic\Managers\PlayerManager.cs" />
+    <Compile Include="GameLogic\Position2.cs" />
     <Compile Include="GameLogic\Managers\ShadowManager.cs" />
     <Compile Include="GameLogic\Managers\WinManager.cs" />
     <Compile Include="GameLogic\Tile.cs" />

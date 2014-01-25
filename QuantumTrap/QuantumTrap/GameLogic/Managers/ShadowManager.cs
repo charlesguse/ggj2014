@@ -6,12 +6,12 @@ namespace QuantumTrap.GameLogic.Managers
 {
     public class ShadowManager
     {
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, LevelManager levelManager)
         {
             throw new System.NotImplementedException();
         }
 
-        public void HandleInput(GameTime gameTime, InputState input, LevelManager levelManager)
+        public void HandleInput(GameTime gameTime, InputState input)
         {
             throw new System.NotImplementedException();
         }

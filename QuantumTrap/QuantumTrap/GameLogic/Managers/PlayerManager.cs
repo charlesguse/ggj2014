@@ -1,4 +1,3 @@
-using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using QuantumTrap.ScreenManagers;
@@ -7,19 +6,26 @@ namespace QuantumTrap.GameLogic.Managers
 {
     public class PlayerManager
     {
-        public void Update(GameTime gameTime)
+        Player Player { get; set; }
+
+        public PlayerManager()
         {
-            throw new NotImplementedException();
+            Player = new Player(); 
         }
 
-        public void HandleInput(GameTime gameTime, InputState input, LevelManager levelManager)
+        public void Update(GameTime gameTime, LevelManager levelManager)
         {
-            throw new NotImplementedException();
+            Player.Update(gameTime, levelManager);
+        }
+
+        public void HandleInput(GameTime gameTime, InputState input)
+        {
+            Player.HandleInput(gameTime, input);
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            throw new NotImplementedException();
+            Player.Draw(gameTime, spriteBatch);
         }
     }
 }
