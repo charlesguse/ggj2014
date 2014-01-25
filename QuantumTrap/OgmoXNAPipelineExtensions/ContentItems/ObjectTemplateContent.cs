@@ -31,45 +31,45 @@ namespace OgmoXNAPipelineExtensions.ContentItems
 
         public ObjectTemplateContent(XmlNode node)
         {
-            if (node.Attributes["height"] != null)
-                this.Height = int.Parse(node.Attributes["height"].Value, CultureInfo.InvariantCulture);
-            if (node.Attributes["width"] != null)
-                this.Width = int.Parse(node.Attributes["width"].Value, CultureInfo.InvariantCulture);
-            if (node.Attributes["resizableX"] != null)
-                this.IsResizableX = bool.Parse(node.Attributes["resizableX"].Value);
-            if (node.Attributes["resizableY"] != null)
-                this.IsResizableY = bool.Parse(node.Attributes["resizableY"].Value);
-            if (node.Attributes["tile"] != null)
-                this.IsTiled = bool.Parse(node.Attributes["tile"].Value);
-            if (node.Attributes["name"] != null)
-                this.Name = node.Attributes["name"].Value;
-            if (node.Attributes["originX"] != null)
-                this.Origin.X = int.Parse(node.Attributes["originX"].Value, CultureInfo.InvariantCulture);
-            if (node.Attributes["originY"] != null)
-                this.Origin.Y = int.Parse(node.Attributes["originY"].Value, CultureInfo.InvariantCulture);
-            if (node.Attributes["imageOffsetX"] != null)
-                this.Source.X = int.Parse(node.Attributes["imageOffsetX"].Value, CultureInfo.InvariantCulture);
+            if (node.Attributes["Height"] != null)
+                this.Height = int.Parse(node.Attributes["Height"].Value, CultureInfo.InvariantCulture);
+            if (node.Attributes["Width"] != null)
+                this.Width = int.Parse(node.Attributes["Width"].Value, CultureInfo.InvariantCulture);
+            if (node.Attributes["ResizableX"] != null)
+                this.IsResizableX = bool.Parse(node.Attributes["ResizableX"].Value);
+            if (node.Attributes["ResizableY"] != null)
+                this.IsResizableY = bool.Parse(node.Attributes["ResizableY"].Value);
+            if (node.Attributes["Tile"] != null)
+                this.IsTiled = bool.Parse(node.Attributes["Tile"].Value);
+            if (node.Attributes["Name"] != null)
+                this.Name = node.Attributes["Name"].Value;
+            if (node.Attributes["OriginX"] != null)
+                this.Origin.X = int.Parse(node.Attributes["OriginX"].Value, CultureInfo.InvariantCulture);
+            if (node.Attributes["OriginY"] != null)
+                this.Origin.Y = int.Parse(node.Attributes["OriginY"].Value, CultureInfo.InvariantCulture);
+            if (node.Attributes["ImageOffsetX"] != null)
+                this.Source.X = int.Parse(node.Attributes["ImageOffsetX"].Value, CultureInfo.InvariantCulture);
             else
                 this.Source.X = 0;
-            if (node.Attributes["imageOffsetY"] != null)
-                this.Source.Y = int.Parse(node.Attributes["imageOffsetY"].Value, CultureInfo.InvariantCulture);
+            if (node.Attributes["ImageOffsetY"] != null)
+                this.Source.Y = int.Parse(node.Attributes["ImageOffsetY"].Value, CultureInfo.InvariantCulture);
             else
                 this.Source.Y = 0;
-            if (node.Attributes["imageWidth"] != null)
-                this.Source.Width = int.Parse(node.Attributes["imageWidth"].Value, CultureInfo.InvariantCulture);
+            if (node.Attributes["ImageWidth"] != null)
+                this.Source.Width = int.Parse(node.Attributes["ImageWidth"].Value, CultureInfo.InvariantCulture);
             else
                 this.Source.Width = this.Width;
-            if (node.Attributes["imageHeight"] != null)
-                this.Source.Height = int.Parse(node.Attributes["imageHeight"].Value, CultureInfo.InvariantCulture);
+            if (node.Attributes["ImageHeight"] != null)
+                this.Source.Height = int.Parse(node.Attributes["ImageHeight"].Value, CultureInfo.InvariantCulture);
             else
                 this.Source.Height = this.Height;
-            if (node.Attributes["image"] != null)
-                this.TextureFile = node.Attributes["image"].Value;
+            if (node.Attributes["Image"] != null)
+                this.TextureFile = node.Attributes["Image"].Value;
             // Values
-            XmlNode valuesNode = node.SelectSingleNode("values");
+            XmlNode valuesNode = node.SelectSingleNode("Values");
             if (valuesNode != null)
             {
-                foreach (XmlNode valueNode in valuesNode.SelectNodes("boolean|integer|number|string|text"))
+                foreach (XmlNode valueNode in valuesNode.SelectNodes("Boolean|Integer|Number|String|Text"))
                 {
                     ValueTemplateContent valueContent = ValueContentTemplateParser.Parse(valueNode);
                     if (valueContent != null)

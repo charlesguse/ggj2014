@@ -22,18 +22,18 @@ namespace OgmoXNAPipelineExtensions.ContentItems.Layers
         public TileLayerContent(XmlNode node, LevelContent level, TileLayerSettingsContent settings)
             : base(node)
         {
-            XmlNodeList tileNodes = node.SelectNodes("tile");
+            XmlNodeList tileNodes = node.SelectNodes("Tile");
             if (!settings.MultipleTilesets)
             {
                 // Just one tileset for this layer, so get it and save it.
-                if (node.Attributes["set"] != null)
-                    this.Tilesets.Add(node.Attributes["set"].Value);
+                if (node.Attributes["Set"] != null)
+                    this.Tilesets.Add(node.Attributes["Set"].Value);
                 if (settings.ExportTileSize)
                 {
-                    if (node.Attributes["tileWidth"] != null)
-                        this.TileWidth = int.Parse(node.Attributes["tileWidth"].Value, CultureInfo.InvariantCulture);
-                    if (node.Attributes["tileHeight"] != null)
-                        this.TileHeight = int.Parse(node.Attributes["tileHeight"].Value, CultureInfo.InvariantCulture);
+                    if (node.Attributes["TileWidth"] != null)
+                        this.TileWidth = int.Parse(node.Attributes["TileWidth"].Value, CultureInfo.InvariantCulture);
+                    if (node.Attributes["TileHeight"] != null)
+                        this.TileHeight = int.Parse(node.Attributes["TileHeight"].Value, CultureInfo.InvariantCulture);
                 }
                 else
                 {
@@ -59,8 +59,8 @@ namespace OgmoXNAPipelineExtensions.ContentItems.Layers
                 foreach(XmlNode tileNode in tileNodes)
                     nodes.Add(tileNode);
                 string[] tilesetNames = (from x in nodes
-                                         where (x.Attributes["set"] != null)
-                                         select x.Attributes["set"].Value).Distinct<string>().ToArray<string>();
+                                         where (x.Attributes["Set"] != null)
+                                         select x.Attributes["Set"].Value).Distinct<string>().ToArray<string>();
                 this.Tilesets.AddRange(tilesetNames);
             }
             foreach (XmlNode tileNode in tileNodes)

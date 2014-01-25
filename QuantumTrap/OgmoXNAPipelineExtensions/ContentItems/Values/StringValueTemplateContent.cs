@@ -18,10 +18,10 @@ namespace OgmoXNAPipelineExtensions.ContentItems.Values
         public StringValueTemplateContent(XmlNode node)
             : base(node)
         {
-            if (node.Attributes["default"] != null)
-                this.Default = node.Attributes["default"].Value;
-            if (node.Attributes["maxChars"] != null)
-                this.MaxChars = int.Parse(node.Attributes["maxChars"].Value, CultureInfo.InvariantCulture);
+            if (node.Attributes["Default"] != null)
+                this.Default = node.Attributes["Default"].Value;
+            if (node.Attributes["MaxChars"] != null)
+                this.MaxChars = int.Parse(node.Attributes["MaxChars"].Value, CultureInfo.InvariantCulture);
         }
     }
 }

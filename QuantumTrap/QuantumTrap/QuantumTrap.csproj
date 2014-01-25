@@ -90,10 +90,6 @@
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OgmoXna\OgmoXna.csproj">
-      <Project>{43368a7b-4df4-4f98-8935-49800e4ad0b7}</Project>
-      <Name>OgmoXna</Name>
-    </ProjectReference>
     <ProjectReference Include="..\QuantumTrap.Content\QuantumTrap.Content\QuantumTrap.Content.csproj">
       <Project>{e5d2e610-4298-49b5-bd4d-ccf6ce408777}</Project>
       <Name>QuantumTrap.Content</Name>

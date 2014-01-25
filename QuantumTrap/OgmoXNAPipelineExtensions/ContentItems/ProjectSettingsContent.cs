@@ -30,25 +30,25 @@ namespace OgmoXNAPipelineExtensions.ContentItems
             {
                 switch (childNode.Name)
                 {
-                    case "defaultHeight":
+                    case "DefaultHeight":
                         this.Height = int.Parse(childNode.InnerText, CultureInfo.InvariantCulture);
                         break;
-                    case "maxHeight":
+                    case "MaxHeight":
                         this.MaxHeight = int.Parse(childNode.InnerText, CultureInfo.InvariantCulture);
                         break;
-                    case "maxWidth":
+                    case "MaxWidth":
                         this.MaxWidth = int.Parse(childNode.InnerText, CultureInfo.InvariantCulture);
                         break;
-                    case "minHeight":
+                    case "MinHeight":
                         this.MinHeight = int.Parse(childNode.InnerText, CultureInfo.InvariantCulture);
                         break;
-                    case "minWidth":
+                    case "MinWidth":
                         this.MinWidth = int.Parse(childNode.InnerText, CultureInfo.InvariantCulture);
                         break;
-                    case "defaultWidth":
+                    case "DefaultWidth":
                         this.Width = int.Parse(childNode.InnerText, CultureInfo.InvariantCulture);
                         break;
-                    case "workingDirectory":
+                    case "WorkingDirectory":
                         this.WorkingDirectory = childNode.InnerText;
                         break;
                 }

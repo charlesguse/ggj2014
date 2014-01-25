@@ -45,7 +45,7 @@ namespace OgmoXNAPipelineExtensions.ContentItems.Layers
                                 obj.Values.Add(new StringValueContent(valueContent.Name, attribute.Value));
                         }
                     }
-                    foreach (XmlNode nodeNode in objectNode.SelectNodes("node"))
+                    foreach (XmlNode nodeNode in objectNode.SelectNodes("Node"))
                         obj.Nodes.Add(new NodeContent(nodeNode));
                     this.Objects.Add(obj);
                 }

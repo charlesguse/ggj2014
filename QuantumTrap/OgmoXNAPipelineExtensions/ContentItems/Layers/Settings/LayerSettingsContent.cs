@@ -22,14 +22,14 @@ namespace OgmoXNAPipelineExtensions.ContentItems.Layers.Settings
 
         public LayerSettingsContent(XmlNode node)
         {
-            if (node.Attributes["gridColor"] != null)
-                this.GridColor = ColorHelper.FromHex(node.Attributes["gridColor"].Value);
-            if (node.Attributes["drawGridSize"] != null)
-                this.GridDrawSize = int.Parse(node.Attributes["drawGridSize"].Value, CultureInfo.InvariantCulture);
-            if (node.Attributes["gridSize"] != null)
-                this.GridSize = int.Parse(node.Attributes["gridSize"].Value, CultureInfo.InvariantCulture);
-            if (node.Attributes["name"] != null)
-                this.Name = node.Attributes["name"].Value;
+            if (node.Attributes["GridColor"] != null)
+                this.GridColor = ColorHelper.FromHex(node.Attributes["GridColor"].Value);
+            if (node.Attributes["DrawGridSize"] != null)
+                this.GridDrawSize = int.Parse(node.Attributes["DrawGridSize"].Value, CultureInfo.InvariantCulture);
+            if (node.Attributes["GridSize"] != null)
+                this.GridSize = int.Parse(node.Attributes["GridSize"].Value, CultureInfo.InvariantCulture);
+            if (node.Attributes["Name"] != null)
+                this.Name = node.Attributes["Name"].Value;
         }
     }
 }

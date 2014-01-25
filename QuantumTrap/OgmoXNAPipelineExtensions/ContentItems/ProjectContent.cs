@@ -25,17 +25,17 @@ namespace OgmoXNAPipelineExtensions.ContentItems
         {
             XmlNode projectNode = document["project"];
             // Name
-            XmlNode nameNode = projectNode.SelectSingleNode("name");
+            XmlNode nameNode = projectNode.SelectSingleNode("Name");
             if (nameNode != null)
                 this.Name = nameNode.InnerText;
             // Settings
-            XmlNode settingsNode = projectNode.SelectSingleNode("settings");
+            XmlNode settingsNode = projectNode.SelectSingleNode("Settings");
             if (settingsNode != null)
                 this.Settings = new ProjectSettingsContent(settingsNode);
             else
                 this.Settings = new ProjectSettingsContent();
             // Values
-            XmlNode valuesNode = projectNode.SelectSingleNode("values");
+            XmlNode valuesNode = projectNode.SelectSingleNode("Values");
             if (valuesNode != null)
             {
                 foreach (XmlNode valueNode in valuesNode.ChildNodes)
@@ -46,21 +46,21 @@ namespace OgmoXNAPipelineExtensions.ContentItems
                 }
             }
             // Tilesets
-            XmlNode tilesetsNode = projectNode.SelectSingleNode("tilesets");
+            XmlNode tilesetsNode = projectNode.SelectSingleNode("Tilesets");
             if (tilesetsNode != null)
             {
                 foreach (XmlNode childNode in tilesetsNode)
                     this.Tilesets.Add(new TilesetContent(childNode));
             }
             // Objects
-            XmlNode objectsNode = projectNode.SelectSingleNode("objects");
+            XmlNode objectsNode = projectNode.SelectSingleNode("Objects");
             if (objectsNode != null)
             {
-                foreach (XmlNode childNode in objectsNode.SelectNodes("object|folder/object"))
+                foreach (XmlNode childNode in objectsNode.SelectNodes("Object|Folder/Object"))
                     this.Objects.Add(new ObjectTemplateContent(childNode));
             }   
             // Layer Settings
-            XmlNode layerSettingsNode = projectNode.SelectSingleNode("layers");
+            XmlNode layerSettingsNode = projectNode.SelectSingleNode("Layers");
             if (layerSettingsNode != null)
             {
                 foreach (XmlNode childNode in layerSettingsNode.ChildNodes)
