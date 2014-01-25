@@ -101,6 +101,15 @@
       <ProcessorParameters_OgmoProjectFile>QuantumTrapLevelProject</ProcessorParameters_OgmoProjectFile>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+<ItemGroup>
+    <ProjectReference Include="..\..\OgmoXNAPipelineExtensions\OgmoXNAPipelineExtensions.csproj">
+      <Project>{81ebfe71-a289-41ca-9cdc-824df6dace1e}</Project>
+      <Name>OgmoXNAPipelineExtensions</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Levels\" />
+  </ItemGroup>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--

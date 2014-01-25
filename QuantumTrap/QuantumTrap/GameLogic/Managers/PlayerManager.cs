@@ -24,9 +24,9 @@ namespace QuantumTrap.GameLogic.Managers
             Player.Update(gameTime, levelManager);
         }
 
-        public void HandleInput(GameTime gameTime, InputState input)
+        public void HandleInput(InputState input, PlayerIndex playerIndex)
         {
-            Player.HandleInput(gameTime, input);
+            Player.HandleInput(input, playerIndex);
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
