@@ -4,7 +4,7 @@ namespace QuantumTrap.GameLogic.Managers
     {
         public void Update(PlayerManager playerManager, ShadowManager shadowManager)
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
         }
     }
 }
