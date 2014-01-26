@@ -16,8 +16,13 @@ namespace QuantumTrap.GameLogic
         private List<PlayerColor> _colorsAvailable;
         public PlayerColor PlayerColor { get { return _colorsAvailable[_currentColor]; } }
         public bool CanMove { get; set; }
+        public bool PlayingCantMoveAnimation { get; set; }
         private bool _incrementingColor { get; set; }
         private bool _decrementingColor { get; set; }
+
+        private Position2 _drawableDirection { get; set; }
+        private TimeSpan _cantMoveAnimTimeElapsed { get; set; }
+        private const int _cantMoveAnimDurationMilliseconds = 500;
 
         private Texture2D _defaultTexture, _greenTexture, _redTexture, _blueTexture, _yellowTexture;
         private DelayedSoundEffect _cantMoveSfx;
@@ -25,6 +30,9 @@ namespace QuantumTrap.GameLogic
 
         public Player(List<PlayerColor> colorsAvailable)
         {
+            _cantMoveAnimTimeElapsed = TimeSpan.Zero;
+            PlayingCantMoveAnimation = false;
+            _drawableDirection = Position2.Zero;
             _colorsAvailable = colorsAvailable;
             
             _currentColor = 0;
@@ -35,7 +43,7 @@ namespace QuantumTrap.GameLogic
             _movingSfx = content.Load<SoundEffect>("sfx/Bozon Moving2");
             _changeColorSfx = content.Load<SoundEffect>("sfx/Color Change");
             _cantChangeColorSfx = content.Load<SoundEffect>("sfx/blip");
-            _cantMoveSfx = new DelayedSoundEffect(content, "sfx/Can't move there sound", 2000);
+            _cantMoveSfx = new DelayedSoundEffect(content, "sfx/Can't move there sound", 500);
             _defaultTexture = content.Load<Texture2D>("img/bozon-default");
             _greenTexture = content.Load<Texture2D>("img/bozon-green");
             _redTexture = content.Load<Texture2D>("img/bozon-red");
@@ -45,46 +53,89 @@ namespace QuantumTrap.GameLogic
 
         public void Update(GameTime gameTime, LevelManager levelManager)
         {
-            var potentialPosition = Position + Direction;
-
-            CanMove = true;
-
-            if (Direction.Sum() != 0)
+            if (PlayingCantMoveAnimation)
             {
-                if (levelManager.CanMoveTo(potentialPosition, PlayerColor))
+                _cantMoveAnimTimeElapsed += gameTime.ElapsedGameTime;
+                DrawablePosition = CalculateCantMoveAnimDrawablePosition(Position, _drawableDirection, _cantMoveAnimTimeElapsed);
+                if (CantMoveAnimFinished(gameTime))
                 {
-                    if (DistanceLeftToTravel == 0 && Direction.Sum() != 0)
+                    PlayingCantMoveAnimation = false;
+                    _cantMoveAnimTimeElapsed = TimeSpan.Zero;
+                    DrawablePosition = ConvertToDrawablePosition(Position, Tile.TILE_SIZE);
+                }
+            }
+            else
+            {
+                var potentialPosition = Position + Direction;
+
+                CanMove = true;
+
+                if (Direction.Sum() != 0)
+                {
+                    if (levelManager.CanMoveTo(potentialPosition, PlayerColor))
                     {
-                        DistanceLeftToTravel = DistanceToTravel;
-                        _movingSfx.Play();
+                        if (DistanceLeftToTravel == 0 && Direction.Sum() != 0)
+                        {
+                            DistanceLeftToTravel = DistanceToTravel;
+                            _movingSfx.Play();
+                        }
+                        Move();
                     }
-                    Move();
+                    else
+                    {
+                        CanMove = false;
+                        PlayingCantMoveAnimation = true;
+                        _drawableDirection = Direction;
+                        _cantMoveAnimTimeElapsed = new TimeSpan();
+
+                        Direction = Position2.Zero;
+
+                        _cantMoveSfx.Play(gameTime);
+                    }
                 }
-                else
+
+
+                var canChangeColor = CanChangeColor(levelManager, potentialPosition);
+                if ((_incrementingColor || _decrementingColor) && canChangeColor)
                 {
-                    Direction = Position2.Zero;
-                    CanMove = false;
-                    _cantMoveSfx.Play(gameTime);
+                    if (_colorsAvailable.Count > 1)
+                        _changeColorSfx.Play();
+
+                    if (_incrementingColor)
+                        IncrementPlayerColor();
+                    else if (_decrementingColor)
+                        DecrementPlayerColor();
                 }
-            }
-
-            var canChangeColor = CanChangeColor(levelManager, potentialPosition);
-            if ((_incrementingColor || _decrementingColor) && canChangeColor)
-            {
-                if (_colorsAvailable.Count > 1)
-                    _changeColorSfx.Play();
-
-                if (_incrementingColor)
-                    IncrementPlayerColor();
-                else if (_decrementingColor)
-                    DecrementPlayerColor();
-            }
-            else if (_incrementingColor || _decrementingColor)
-            {
-                _cantChangeColorSfx.Play();
+                else if (_incrementingColor || _decrementingColor)
+                {
+                    _cantChangeColorSfx.Play();
+                }
             }
 
             _decrementingColor = _incrementingColor = false;
+        }
+
+        private bool CantMoveAnimFinished(GameTime gameTime)
+        {
+            return (_cantMoveAnimTimeElapsed.Milliseconds >= _cantMoveAnimDurationMilliseconds);
+        }
+
+        private Position2 CalculateCantMoveAnimDrawablePosition(Position2 Position, Position2 _drawableDirection, TimeSpan cantMoveAnimTimeElapsed)
+        {
+            const int _cantMoveShakeDistance = 4;
+
+            Position2 baseDrawablePosition = ConvertToDrawablePosition(Position, Tile.TILE_SIZE);
+            double animationPlayDurationFrames = (_cantMoveAnimDurationMilliseconds / 1000) * Game1.TargetFrameRate; 
+            double animationPlayElapsedFrames = (cantMoveAnimTimeElapsed.TotalSeconds * Game1.TargetFrameRate);
+
+            double framesBeforeBouncing = (animationPlayDurationFrames);
+            double moveOffsetDistance = 48 * Math.Min(animationPlayElapsedFrames, framesBeforeBouncing);
+            double bounceDistance = (animationPlayElapsedFrames >= framesBeforeBouncing) ? (Math.Sin(animationPlayElapsedFrames - framesBeforeBouncing) * _cantMoveShakeDistance) : 0;
+            
+            int distanceToMove = (int)(moveOffsetDistance + bounceDistance);
+            Position2 newPosition = baseDrawablePosition + (_drawableDirection * distanceToMove);
+
+            return newPosition;
         }
 
         private bool CanChangeColor(LevelManager levelManager, Position2 potentialPosition)
