@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Linq;
 
 namespace QuantumTrap.GameLogic
 {
@@ -26,7 +27,7 @@ namespace QuantumTrap.GameLogic
         public void Update(GameTime gameTime, Player player)
         {
             PlayerColor tilePlayerColor = GetPlayerColor(this.TileType);
-            TimeSpan? timeSwitched = player.PlayerColorSwitchTimes[tilePlayerColor];
+            TimeSpan? timeSwitched = (player.PlayerColorSwitchTimes.Keys.Contains(tilePlayerColor)) ? player.PlayerColorSwitchTimes[tilePlayerColor] : (TimeSpan?)null;
 
             if (timeSwitched.HasValue)
             {
