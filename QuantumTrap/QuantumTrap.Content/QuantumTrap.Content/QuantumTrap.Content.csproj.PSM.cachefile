@@ -19,7 +19,11 @@ Content\img\level-2-background.xnb
 Content\img\level-3-background.xnb
 Content\img\level-4-background.xnb
 Content\sfx\blip.xnb
+Content\sfx\Bozon Moving.xnb
+Content\sfx\Color Change.xnb
+Content\sfx\Can't move there sound.xnb
 Content\Levels\center.oel
 Content\Levels\debug.oel
+Content\Levels\Level 1.oel
 Content\Levels\QuantumTrapLevelProject.oep
 Content\Levels\red_bridge.oel
