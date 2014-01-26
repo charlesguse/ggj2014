@@ -55,7 +55,7 @@ namespace QuantumTrap.GameLogic
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch, PlayerColor playerColor)
         {
-            spriteBatch.Draw(_background, new Rectangle(0,0,1280,720), Color.White);
+            spriteBatch.Draw(_background, new Rectangle(0, 0, Game1.Width, Game1.Height), Color.White);
             for (int x = 0; x < TileMap.Length; x++)
             {
                 for (int y = 0; y < TileMap[x].Length; y++)
