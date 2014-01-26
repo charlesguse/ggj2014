@@ -3,10 +3,10 @@
     public enum TileType
     {
         White,
-        Yellow,
+        Green,
         Red,
         Blue,
-        Green,
+        Yellow,
         Black
     }
 }
