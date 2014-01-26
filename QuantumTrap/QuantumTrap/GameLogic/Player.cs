@@ -21,7 +21,7 @@ namespace QuantumTrap.GameLogic
 
         private Texture2D _defaultTexture, _greenTexture, _redTexture, _blueTexture, _yellowTexture;
         private DelayedSoundEffect _cantMoveSfx;
-        private SoundEffect _changeColorSfx, _cantChangeColorSfx;
+        private SoundEffect _movingSfx, _changeColorSfx, _cantChangeColorSfx;
 
         public Player(Position2 startingLocation)
         {
@@ -37,6 +37,7 @@ namespace QuantumTrap.GameLogic
 
         public void LoadContent(ContentManager content)
         {
+            _movingSfx = content.Load<SoundEffect>("sfx/blip");
             _changeColorSfx = content.Load<SoundEffect>("sfx/blip");
             _cantChangeColorSfx = content.Load<SoundEffect>("sfx/blip");
             _cantMoveSfx = new DelayedSoundEffect(content, "sfx/blip", 2000);
@@ -60,6 +61,7 @@ namespace QuantumTrap.GameLogic
                     if (DistanceLeftToTravel == 0 && Direction.Sum() != 0)
                     {
                         DistanceLeftToTravel = DistanceToTravel;
+                        _movingSfx.Play();
                     }
                     Move();
                 }
