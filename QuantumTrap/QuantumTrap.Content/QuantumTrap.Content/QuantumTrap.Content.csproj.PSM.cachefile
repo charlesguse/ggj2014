@@ -4,6 +4,10 @@ Content\img\blank.xnb
 Content\img\background.xnb
 Content\img\gradient.xnb
 Content\img\bozon-default.xnb
+Content\img\level-1-background.xnb
+Content\img\level-2-background.xnb
+Content\img\level-3-background.xnb
+Content\img\level-4-background.xnb
 Content\img\bozon-blue.xnb
 Content\img\bozon-green.xnb
 Content\img\bozon-red.xnb
@@ -14,18 +18,14 @@ Content\img\black-block.xnb
 Content\img\green-block.xnb
 Content\img\red-block.xnb
 Content\img\yellow-block.xnb
-Content\img\level-1-background.xnb
-Content\img\level-2-background.xnb
-Content\img\level-3-background.xnb
-Content\img\level-4-background.xnb
-Content\sfx\blip.xnb
-Content\sfx\Bozon Moving.xnb
-Content\sfx\Color Change.xnb
-Content\sfx\Can't move there sound.xnb
 Content\img\level-5-background.xnb
 Content\img\story-level-1.xnb
 Content\img\story-level-2.xnb
 Content\img\story-level-3.xnb
+Content\sfx\blip.xnb
+Content\sfx\Bozon Moving.xnb
+Content\sfx\Color Change.xnb
+Content\sfx\Can't move there sound.xnb
 Content\Levels\center.oel
 Content\Levels\debug.oel
 Content\Levels\Level 1.oel
