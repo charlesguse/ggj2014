@@ -31,25 +31,25 @@ namespace OgmoXNAPipelineExtensions.ContentItems.Layers
             }
             else if(settings.MultipleTilesets || settings.ExportTileSize) 
             {
-                if (node.Attributes["th"] != null)
-                    this.Height = int.Parse(node.Attributes["th"].Value, CultureInfo.InvariantCulture);
-                if (node.Attributes["tw"] != null)
-                    this.Width = int.Parse(node.Attributes["tw"].Value, CultureInfo.InvariantCulture);
+                if (node.Attributes["Th"] != null)
+                    this.Height = int.Parse(node.Attributes["Th"].Value, CultureInfo.InvariantCulture);
+                if (node.Attributes["Tw"] != null)
+                    this.Width = int.Parse(node.Attributes["Tw"].Value, CultureInfo.InvariantCulture);
             }
-            if (node.Attributes["x"] != null)
-                this.Position.X = int.Parse(node.Attributes["x"].Value, CultureInfo.InvariantCulture);
-            if (node.Attributes["y"] != null)
-                this.Position.Y = int.Parse(node.Attributes["y"].Value, CultureInfo.InvariantCulture);
-            if (node.Attributes["tx"] != null)
-                this.TextureOffset.X = int.Parse(node.Attributes["tx"].Value, CultureInfo.InvariantCulture);
-            if (node.Attributes["ty"] != null)
-                this.TextureOffset.Y = int.Parse(node.Attributes["ty"].Value, CultureInfo.InvariantCulture);
-            if (node.Attributes["id"] != null)
-                this.SourceIndex = int.Parse(node.Attributes["id"].Value, CultureInfo.InvariantCulture);
+            if (node.Attributes["X"] != null)
+                this.Position.X = int.Parse(node.Attributes["X"].Value, CultureInfo.InvariantCulture);
+            if (node.Attributes["Y"] != null)
+                this.Position.Y = int.Parse(node.Attributes["Y"].Value, CultureInfo.InvariantCulture);
+            if (node.Attributes["Tx"] != null)
+                this.TextureOffset.X = int.Parse(node.Attributes["Tx"].Value, CultureInfo.InvariantCulture);
+            if (node.Attributes["Ty"] != null)
+                this.TextureOffset.Y = int.Parse(node.Attributes["Ty"].Value, CultureInfo.InvariantCulture);
+            if (node.Attributes["Id"] != null)
+                this.SourceIndex = int.Parse(node.Attributes["Id"].Value, CultureInfo.InvariantCulture);
             if (settings.MultipleTilesets)
             {
-                if (node.Attributes["set"] != null)
-                    this.TilesetName = node.Attributes["set"].Value;
+                if (node.Attributes["Set"] != null)
+                    this.TilesetName = node.Attributes["Set"].Value;
             }
             else
                 this.TilesetName = layer.Tilesets[0];

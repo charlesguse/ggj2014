@@ -19,12 +19,12 @@ namespace OgmoXNAPipelineExtensions.ContentItems.Values
         public IntegerValueTemplateContent(XmlNode node)
             : base(node)
         {
-            if (node.Attributes["default"] != null)
-                this.Default = int.Parse(node.Attributes["default"].Value, CultureInfo.InvariantCulture);
-            if (node.Attributes["max"] != null)
-                this.Max = int.Parse(node.Attributes["max"].Value, CultureInfo.InvariantCulture);
-            if (node.Attributes["min"] != null)
-                this.Min = int.Parse(node.Attributes["min"].Value, CultureInfo.InvariantCulture);
+            if (node.Attributes["Default"] != null)
+                this.Default = int.Parse(node.Attributes["Default"].Value, CultureInfo.InvariantCulture);
+            if (node.Attributes["Max"] != null)
+                this.Max = int.Parse(node.Attributes["Max"].Value, CultureInfo.InvariantCulture);
+            if (node.Attributes["Min"] != null)
+                this.Min = int.Parse(node.Attributes["Min"].Value, CultureInfo.InvariantCulture);
         }
     }
 }

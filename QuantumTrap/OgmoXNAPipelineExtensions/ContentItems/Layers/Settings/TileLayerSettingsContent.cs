@@ -19,12 +19,12 @@ namespace OgmoXNAPipelineExtensions.ContentItems.Layers.Settings
         public TileLayerSettingsContent(XmlNode node)
             : base(node)
         {
-            if (node.Attributes["exportTileIDs"] != null)
-                this.ExportTileIDs = bool.Parse(node.Attributes["exportTileIDs"].Value);
-            if (node.Attributes["exportTileSize"] != null)
-                this.ExportTileSize = bool.Parse(node.Attributes["exportTileSize"].Value);
-            if (node.Attributes["multipleTilesets"] != null)
-                this.MultipleTilesets = bool.Parse(node.Attributes["multipleTilesets"].Value);
+            if (node.Attributes["ExportTileIDs"] != null)
+                this.ExportTileIDs = bool.Parse(node.Attributes["ExportTileIDs"].Value);
+            if (node.Attributes["ExportTileSize"] != null)
+                this.ExportTileSize = bool.Parse(node.Attributes["ExportTileSize"].Value);
+            if (node.Attributes["MultipleTilesets"] != null)
+                this.MultipleTilesets = bool.Parse(node.Attributes["MultipleTilesets"].Value);
         }
     }
 }

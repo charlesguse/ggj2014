@@ -18,10 +18,10 @@ namespace OgmoXNAPipelineExtensions.ContentItems
 
         public NodeContent(XmlNode node)
         {
-            if (node.Attributes["x"] != null)
-                this.Position.X = int.Parse(node.Attributes["x"].Value, CultureInfo.InvariantCulture);
-            if (node.Attributes["y"] != null)
-                this.Position.Y = int.Parse(node.Attributes["y"].Value, CultureInfo.InvariantCulture);
+            if (node.Attributes["X"] != null)
+                this.Position.X = int.Parse(node.Attributes["X"].Value, CultureInfo.InvariantCulture);
+            if (node.Attributes["Y"] != null)
+                this.Position.Y = int.Parse(node.Attributes["Y"].Value, CultureInfo.InvariantCulture);
         }
     }
 }

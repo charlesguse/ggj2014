@@ -12,11 +12,11 @@ namespace QuantumTrap.GameLogic
         public Level()
         {
             var random = new Random();
-            TileMap = new Tile[20][];
+            TileMap = new Tile[Constants.LEVEL_WIDTH][];
 
             for (int x = 0; x < TileMap.Length; x++)
             {
-                TileMap[x] = new Tile[20];
+                TileMap[x] = new Tile[Constants.LEVEL_HEIGHT];
                 for (int y = 0; y < TileMap[x].Length; y++)
                 {
                     TileMap[x][y] = new Tile(new Position2 { X = x, Y = y });

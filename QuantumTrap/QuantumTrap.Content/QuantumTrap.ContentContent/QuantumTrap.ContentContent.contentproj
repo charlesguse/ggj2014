@@ -53,6 +53,12 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
+    <None Include="Levels\QuantumTrapLevelProject.oep">
+      <Name>QuantumTrapLevelProject</Name>
+      <Importer>OepImporter</Importer>
+      <Processor>OepProcessor</Processor>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="img\blank.png">
@@ -88,12 +94,13 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\OgmoXNAPipelineExtensions\OgmoXNAPipelineExtensions.csproj">
-      <Project>{81ebfe71-a289-41ca-9cdc-824df6dace1e}</Project>
-      <Name>OgmoXNAPipelineExtensions</Name>
-    </ProjectReference>
+    <None Include="Levels\red_bridge.oel">
+      <Name>red_bridge</Name>
+      <Importer>OelImporter</Importer>
+      <Processor>OelProcessor</Processor>
+      <ProcessorParameters_OgmoProjectFile>QuantumTrapLevelProject</ProcessorParameters_OgmoProjectFile>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Levels\" />

@@ -15,7 +15,8 @@ namespace QuantumTrap.GameLogic.Managers
 
         public void LoadContent(ContentManager content)
         {
-            Level.LoadContent(content);
+            LevelImporter importer = new LevelImporter();
+            this.Level = importer.Import("red_bridge");
         }
 
         public void Update(GameTime gameTime)

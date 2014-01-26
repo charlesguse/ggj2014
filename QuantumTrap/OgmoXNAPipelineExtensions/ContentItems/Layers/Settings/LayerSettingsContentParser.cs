@@ -13,13 +13,13 @@ namespace OgmoXNAPipelineExtensions.ContentItems.Layers.Settings
             LayerSettingsContent content = null;
             switch (node.Name)
             {
-                case "grid":
+                case "Grid":
                     content = new GridLayerSettingsContent(node);
                     break;
-                case "tiles":
+                case "Tiles":
                     content = new TileLayerSettingsContent(node);
                     break;
-                case "objects":
+                case "Objects":
                     content = new ObjectLayerSettingsContent(node);
                     break;
             }
