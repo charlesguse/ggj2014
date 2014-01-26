@@ -10,12 +10,6 @@ namespace QuantumTrap.GameLogic
     {
         private Texture2D _shadowTexture;
 
-        //public Shadow(Position2 startingLocation)
-        //{
-        //    Position = startingLocation;
-        //    SetDrawablePosition(Position);
-        //}
-
         public void LoadContent(ContentManager content)
         {
             _shadowTexture = content.Load<Texture2D>("img/lepton");            
