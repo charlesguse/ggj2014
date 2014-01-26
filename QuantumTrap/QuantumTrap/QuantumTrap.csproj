@@ -52,6 +52,11 @@
     <Compile Include="GameLogic\Position2.cs" />
     <Compile Include="GameLogic\Managers\WinManager.cs" />
     <Compile Include="GameLogic\Shadow.cs" />
+    <Compile Include="GameLogic\Sprite\Animation.cs" />
+    <Compile Include="GameLogic\Sprite\AnimationBase.cs" />
+    <Compile Include="GameLogic\Sprite\AnimationPlayer.cs" />
+    <Compile Include="GameLogic\Sprite\NoAnimation.cs" />
+    <Compile Include="GameLogic\Sprite\StillAnimation.cs" />
     <Compile Include="GameLogic\Tile.cs" />
     <Compile Include="GameLogic\TileBase.cs" />
     <Compile Include="GameLogic\TileType.cs" />
