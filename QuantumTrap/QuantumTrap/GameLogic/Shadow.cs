@@ -12,7 +12,7 @@ namespace QuantumTrap.GameLogic
         public Shadow(Position2 startingLocation)
         {
             Position = startingLocation;
-            DrawablePosition = ConvertToDrawablePosition(Position, TileSize);
+            SetDrawablePosition(Position);
         }
 
         public void LoadContent(ContentManager content)
@@ -27,7 +27,7 @@ namespace QuantumTrap.GameLogic
             if (DistanceLeftToTravel > 0)
             {
                 var potentialPostion = Position + Direction;
-                if (levelManager.CanMoveTo(potentialPostion, PlayerColor.Grey))
+                if (levelManager.CanMoveTo(potentialPostion, player.PlayerColor))
                 {
                     Move();
                 }
@@ -39,7 +39,7 @@ namespace QuantumTrap.GameLogic
             else if (DistanceLeftToTravel == 0 && Direction.Sum() != 0)
             {
                 var potentialPostion = Position + Direction;
-                if (levelManager.CanMoveTo(potentialPostion, PlayerColor.Grey))
+                if (levelManager.CanMoveTo(potentialPostion, player.PlayerColor))
                 {
                     DistanceLeftToTravel = DistanceToTravel;
                     Move();

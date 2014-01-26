@@ -53,6 +53,10 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
+    <None Include="Levels\center.oel">
+      <Name>center</Name>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Levels\debug.oel">
       <Name>debug</Name>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

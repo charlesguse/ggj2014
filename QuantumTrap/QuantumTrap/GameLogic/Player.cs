@@ -26,7 +26,7 @@ namespace QuantumTrap.GameLogic
             _colorsAvailable.Add(PlayerColor.Yellow);
             _currentColor = 0;
             Position = startingLocation;
-            DrawablePosition = ConvertToDrawablePosition(Position, TileSize);
+            SetDrawablePosition(Position);
         }
 
         public void LoadContent(ContentManager content)
