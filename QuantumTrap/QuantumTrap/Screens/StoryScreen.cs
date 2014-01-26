@@ -9,6 +9,7 @@
 
 #region Using Statements
 
+using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -25,8 +26,8 @@ namespace QuantumTrap.Screens
     class StoryScreen : MenuScreen
     {
         // Configurable
-        private readonly string[] _levelFiles = { "debug", "center" };
-        private readonly string[] _storyBackgroundsFiles = { "img/background", "img/background" };
+        private readonly string[] _levelFiles = { "debug", "center", "center", "center", "center" };
+        private readonly string[] _storyBackgroundsFiles = { "img/background", "img/background", "img/background", "img/background", "img/background", "img/background" };
 
         private List<PlayerColor> GetColorsAvailable(int currentLevel)
         {
@@ -64,6 +65,11 @@ namespace QuantumTrap.Screens
         public StoryScreen(int currentLevel, bool nextLevel)
             : base("Story")
         {
+            if (_levelFiles.Length + 1 != _storyBackgroundsFiles.Length)
+            {
+                throw new ArgumentOutOfRangeException("There should be one less level than story backgrounds.");
+            }
+
             CurrentLevel = currentLevel;
             _maxLevel = _levelFiles.Length;
 
@@ -122,7 +128,7 @@ namespace QuantumTrap.Screens
 
         public void NextLevel()
         {
-            if (CurrentLevel + 1 < _maxLevel)
+            if (CurrentLevel + 1 <= _maxLevel)
             {
                 CurrentLevel++;
             }
