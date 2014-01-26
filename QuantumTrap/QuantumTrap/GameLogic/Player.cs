@@ -15,6 +15,8 @@ namespace QuantumTrap.GameLogic
         private List<PlayerColor> _colorsAvailable;
         public PlayerColor PlayerColor { get { return _colorsAvailable[_currentColor]; } }
         public bool CanMove { get; set; }
+        private bool _incrementingColor { get; set; }
+        private bool _decrementingColor { get; set; }
 
         private Texture2D _defaultTexture, _greenTexture, _redTexture, _blueTexture, _yellowTexture;
 
@@ -41,10 +43,11 @@ namespace QuantumTrap.GameLogic
 
         public void Update(GameTime gameTime, LevelManager levelManager)
         {
-            CanMove = true;
+            var potentialPosition = Position + Direction;
 
-            var potentialPostion = Position + Direction;
-            if (levelManager.CanMoveTo(potentialPostion, PlayerColor))
+            CanMove = true;
+            
+            if (levelManager.CanMoveTo(potentialPosition, PlayerColor))
             {
                 if (DistanceLeftToTravel == 0 && Direction.Sum() != 0)
                 {
@@ -57,6 +60,26 @@ namespace QuantumTrap.GameLogic
                 Direction = Position2.Zero;
                 CanMove = false;
             }
+
+            var canChangeColor = CanChangeColor(levelManager, potentialPosition);
+            if ((_incrementingColor || _decrementingColor) && canChangeColor)
+            {
+                if (_incrementingColor)
+                    IncrementPlayerColor();
+                else if (_decrementingColor)
+                    DecrementPlayerColor();
+            }
+
+            _decrementingColor = _incrementingColor = false;
+        }
+
+        private bool CanChangeColor(LevelManager levelManager, Position2 potentialPosition)
+        {
+            var currentPositionTileType = levelManager.Level.TileMap[Position.X][Position.Y].TileType;
+            var potentialPositionTileType = levelManager.Level.TileMap[potentialPosition.X][potentialPosition.Y].TileType;
+            return (!CanMove || 
+                Position == potentialPosition || 
+                (currentPositionTileType == TileType.White && potentialPositionTileType == TileType.White));
         }
 
         public void HandleInput(InputState input, PlayerIndex playerIndex)
@@ -69,19 +92,17 @@ namespace QuantumTrap.GameLogic
 
         }
 
-        private PlayerColor SetPlayerColor(InputState input, PlayerIndex playerIndex, PlayerColor playerColor)
+        private void SetPlayerColor(InputState input, PlayerIndex playerIndex, PlayerColor playerColor)
         {
             PlayerIndex unused;
 
             if (input.IsNewKeyPress(Keys.Q, playerIndex, out unused)
                 || input.IsNewButtonPress(Buttons.LeftShoulder, playerIndex, out unused))
-                DecrementPlayerColor();
+                _decrementingColor = true;
 
             if (input.IsNewKeyPress(Keys.E, playerIndex, out unused)
                 || input.IsNewButtonPress(Buttons.RightShoulder, playerIndex, out unused))
-                IncrementPlayerColor();
-
-            return playerColor;
+                _incrementingColor = true;
         }
 
         private void DecrementPlayerColor()
@@ -103,8 +124,6 @@ namespace QuantumTrap.GameLogic
                 _currentColor = 0;
             }
         }
-
-        
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
