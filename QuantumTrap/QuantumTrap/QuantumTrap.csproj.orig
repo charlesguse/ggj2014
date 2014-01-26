@@ -46,10 +46,12 @@
     <Compile Include="GameLogic\Managers\LevelManager.cs" />
     <Compile Include="GameLogic\Player.cs" />
     <Compile Include="GameLogic\Managers\PlayerManager.cs" />
+    <Compile Include="GameLogic\PlayerColor.cs" />
     <Compile Include="GameLogic\Position2.cs" />
     <Compile Include="GameLogic\Managers\ShadowManager.cs" />
     <Compile Include="GameLogic\Managers\WinManager.cs" />
     <Compile Include="GameLogic\Tile.cs" />
+    <Compile Include="GameLogic\TileBase.cs" />
     <Compile Include="GameLogic\TileType.cs" />
     <Compile Include="LevelImporter.cs" />
     <Compile Include="Program.cs" />
