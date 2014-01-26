@@ -20,7 +20,7 @@ namespace QuantumTrap.GameLogic.Managers
 
         public void LoadContent(ContentManager content)
         {
-            LevelManager.LoadContent(content, PlayerManager, ShadowManager);
+            LevelManager.LoadContent(content, PlayerManager);
             PlayerManager.LoadContent(content);
         }
 
