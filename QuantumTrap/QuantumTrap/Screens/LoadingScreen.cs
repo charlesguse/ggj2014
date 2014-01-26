@@ -152,7 +152,7 @@ namespace QuantumTrap.Screens
 
                 // Draw the text.
                 spriteBatch.Begin();
-                spriteBatch.DrawString(font, message, textPosition, color);
+                //spriteBatch.DrawString(font, message, textPosition, color);
                 spriteBatch.End();
             }
         }
