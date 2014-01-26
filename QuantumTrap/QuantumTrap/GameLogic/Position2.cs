@@ -43,6 +43,12 @@ namespace QuantumTrap.GameLogic
             return position1;
         }
 
+        public static Position2 operator *(Position2 position, int scalar)
+        {
+            position *= new Position2 {X = scalar, Y = scalar};
+            return position;
+        }
+
         public static implicit operator Vector2(Position2 position)  // explicit byte to digit conversion operator
         {
             var vector = new Vector2 {X = position.X, Y = position.Y};
