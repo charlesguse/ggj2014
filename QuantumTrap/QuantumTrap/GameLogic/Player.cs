@@ -32,10 +32,10 @@ namespace QuantumTrap.GameLogic
 
         public void LoadContent(ContentManager content)
         {
-            _movingSfx = content.Load<SoundEffect>("sfx/blip");
-            _changeColorSfx = content.Load<SoundEffect>("sfx/blip");
+            _movingSfx = content.Load<SoundEffect>("sfx/Bozon Moving");
+            _changeColorSfx = content.Load<SoundEffect>("sfx/Color Change");
             _cantChangeColorSfx = content.Load<SoundEffect>("sfx/blip");
-            _cantMoveSfx = new DelayedSoundEffect(content, "sfx/blip", 2000);
+            _cantMoveSfx = new DelayedSoundEffect(content, "sfx/Can't move there sound", 2000);
             _defaultTexture = content.Load<Texture2D>("img/bozon-default");
             _greenTexture = content.Load<Texture2D>("img/bozon-green");
             _redTexture = content.Load<Texture2D>("img/bozon-red");
