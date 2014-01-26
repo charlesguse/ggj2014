@@ -130,7 +130,7 @@ namespace QuantumTrap.ScreenManagers
         /// <summary>
         /// Unload your graphics content.
         /// </summary>
-        protected override void UnloadContent()
+        public new void UnloadContent()
         {
             // Tell each of the screens to unload their content.
             foreach (GameScreen screen in screens)
