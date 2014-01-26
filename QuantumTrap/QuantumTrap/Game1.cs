@@ -72,6 +72,8 @@ namespace QuantumTrap
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            LevelImporter importer = new LevelImporter();
+            importer.Import("red_bridge");
             // TODO: use this.Content to load your game content here
         }
 

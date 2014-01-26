@@ -50,6 +50,7 @@
     <Compile Include="GameLogic\Managers\WinManager.cs" />
     <Compile Include="GameLogic\Tile.cs" />
     <Compile Include="GameLogic\TileType.cs" />
+    <Compile Include="LevelImporter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScreenManagers\GameScreen.cs" />
