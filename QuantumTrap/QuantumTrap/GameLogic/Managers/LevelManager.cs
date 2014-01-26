@@ -13,7 +13,7 @@ namespace QuantumTrap.GameLogic.Managers
             Level = new Level();
         }
 
-        public void LoadContent(ContentManager content, PlayerManager player, ShadowManager shadow)
+        public void LoadContent(ContentManager content, PlayerManager player)
         {
             LevelImporter importer = new LevelImporter();
             this.Level = importer.Import("debug");

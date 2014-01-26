@@ -10,7 +10,7 @@ using QuantumTrap.GameLogic.Managers;
 
 namespace QuantumTrap.GameLogic
 {
-    class Shadow : PlayerBase
+    public class Shadow : PlayerBase
     {
         private Texture2D _shadowTexture;
 
@@ -29,10 +29,30 @@ namespace QuantumTrap.GameLogic
         {
             Direction = player.Direction * -1;
 
-            var potentialPostion = Position + Direction;
-            if (levelManager.CanMoveTo(potentialPostion, player.PlayerColor))
+            if (DistanceLeftToTravel > 0)
             {
-                Move();
+                var potentialPostion = Position + Direction;
+                if (levelManager.CanMoveTo(potentialPostion, PlayerColor.Grey))
+                {
+                    Move();
+                }
+                else
+                {
+                    Direction = Position2.Zero;
+                }
+            }
+            else if (DistanceLeftToTravel == 0 && Direction.Sum() != 0)
+            {
+                var potentialPostion = Position + Direction;
+                if (levelManager.CanMoveTo(potentialPostion, PlayerColor.Grey))
+                {
+                    DistanceLeftToTravel = DistanceToTravel;
+                    Move();
+                }
+                else
+                {
+                    Direction = Position2.Zero;
+                }
             }
         }
 
