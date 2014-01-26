@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -10,7 +11,9 @@ namespace QuantumTrap.GameLogic
 {
     public class Player : TileBase
     {
-        private PlayerColor _playerColor;
+        private int _currentColor;
+        private List<PlayerColor> _colorsAvailable;
+        public PlayerColor PlayerColor { get { return _colorsAvailable[_currentColor]; } }
         Position2 Position { get; set; }
         int DistanceToTravel { get { return 64; } }
         int DistanceLeftToTravel { get; set; }
@@ -20,8 +23,13 @@ namespace QuantumTrap.GameLogic
 
         public Player(Position2 startingLocation)
         {
+            _colorsAvailable = new List<PlayerColor> { PlayerColor.Grey };
+            _colorsAvailable.Add(PlayerColor.Green);
+            _colorsAvailable.Add(PlayerColor.Red);
+            _colorsAvailable.Add(PlayerColor.Blue);
+            _colorsAvailable.Add(PlayerColor.Yellow);
+            _currentColor = 0;
             Position = startingLocation;
-            _playerColor = PlayerColor.Grey;
             _drawablePosition = ConvertToDrawablePosition(Position, TileSize);
         }
 
@@ -39,7 +47,7 @@ namespace QuantumTrap.GameLogic
             if (DistanceLeftToTravel > 0)
             {
                 var potentialPostion = Position + Direction;
-                if (levelManager.CanMoveTo(potentialPostion, _playerColor))
+                if (levelManager.CanMoveTo(potentialPostion, PlayerColor))
                 {
                     Move();
                 }
@@ -47,7 +55,7 @@ namespace QuantumTrap.GameLogic
             else if (DistanceLeftToTravel == 0 && Direction.Sum() != 0)
             {
                 var potentialPostion = Position + Direction;
-                if (levelManager.CanMoveTo(potentialPostion, _playerColor))
+                if (levelManager.CanMoveTo(potentialPostion, PlayerColor))
                 {
                     DistanceLeftToTravel = DistanceToTravel;
                     Move();
@@ -76,45 +84,43 @@ namespace QuantumTrap.GameLogic
             {
                 Direction = GetMovementVector(input, playerIndex);
             }
-            _playerColor = GetPlayerColor(input, playerIndex, _playerColor);
+            SetPlayerColor(input, playerIndex, PlayerColor);
 
         }
 
-        private static PlayerColor GetPlayerColor(InputState input, PlayerIndex playerIndex, PlayerColor playerColor)
+        private PlayerColor SetPlayerColor(InputState input, PlayerIndex playerIndex, PlayerColor playerColor)
         {
             PlayerIndex unused;
 
-            if (input.IsNewKeyPress(Keys.Q, playerIndex, out unused) 
+            if (input.IsNewKeyPress(Keys.Q, playerIndex, out unused)
                 || input.IsNewButtonPress(Buttons.LeftShoulder, playerIndex, out unused))
-                playerColor = DecrementPlayerColor(playerColor);
+                DecrementPlayerColor();
 
             if (input.IsNewKeyPress(Keys.E, playerIndex, out unused)
                 || input.IsNewButtonPress(Buttons.RightShoulder, playerIndex, out unused))
-                playerColor = IncrementPlayerColor(playerColor);
+                IncrementPlayerColor();
 
             return playerColor;
         }
 
-        private static PlayerColor DecrementPlayerColor(PlayerColor playerColor)
+        private void DecrementPlayerColor()
         {
-            var newColor = (int) playerColor - 1;
-            const int maxColor = (int) PlayerColor.Yellow;
-            if (newColor < 0)
+            _currentColor = _currentColor - 1;
+            int maxColor = _colorsAvailable.Count;
+            if (_currentColor < 0)
             {
-                newColor = maxColor;
+                _currentColor = maxColor - 1;
             }
-            return (PlayerColor)newColor;
         }
 
-        private static PlayerColor IncrementPlayerColor(PlayerColor playerColor)
+        private void IncrementPlayerColor()
         {
-            var newColor = (int)playerColor + 1;
-            const int maxColor = (int)PlayerColor.Yellow;
-            if (newColor > maxColor)
+            _currentColor = _currentColor + 1;
+            int maxColor = _colorsAvailable.Count;
+            if (_currentColor >= maxColor)
             {
-                newColor = 0;
+                _currentColor = 0;
             }
-            return (PlayerColor)newColor;
         }
 
         private static Position2 GetMovementVector(InputState input, PlayerIndex playerIndex)
@@ -139,14 +145,11 @@ namespace QuantumTrap.GameLogic
 
             if (gamePadState.IsButtonDown(Buttons.DPadLeft))
                 movement.X--;
-
-            if (gamePadState.IsButtonDown(Buttons.DPadRight))
-                movement.X++;
-
-            if (gamePadState.IsButtonDown(Buttons.DPadUp))
-                movement.Y--;
-
-            if (gamePadState.IsButtonDown(Buttons.DPadDown))
+            else if (gamePadState.IsButtonDown(Buttons.DPadRight))
+                 movement.X++;
+            else if (gamePadState.IsButtonDown(Buttons.DPadUp))
+                 movement.Y--;
+            else if (gamePadState.IsButtonDown(Buttons.DPadDown))
                 movement.Y++;
 
             return movement;
@@ -158,15 +161,12 @@ namespace QuantumTrap.GameLogic
             var movement = Position2.Zero;
 
             if (keyboardState.IsKeyDown(Keys.A) || keyboardState.IsKeyDown(Keys.Left))
-                movement.X--;
-
-            if (keyboardState.IsKeyDown(Keys.D) || keyboardState.IsKeyDown(Keys.Right))
-                movement.X++;
-
-            if (keyboardState.IsKeyDown(Keys.W) || keyboardState.IsKeyDown(Keys.Up))
-                movement.Y--;
-
-            if (keyboardState.IsKeyDown(Keys.S) || keyboardState.IsKeyDown(Keys.Down))
+                 movement.X--;
+            else if (keyboardState.IsKeyDown(Keys.D) || keyboardState.IsKeyDown(Keys.Right))
+                 movement.X++;
+            else if (keyboardState.IsKeyDown(Keys.W) || keyboardState.IsKeyDown(Keys.Up))
+                 movement.Y--;
+            else if (keyboardState.IsKeyDown(Keys.S) || keyboardState.IsKeyDown(Keys.Down))
                 movement.Y++;
 
             return movement;
@@ -186,7 +186,7 @@ namespace QuantumTrap.GameLogic
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(GetColorTexture(_playerColor), _drawablePosition, Color.White);
+            spriteBatch.Draw(GetColorTexture(PlayerColor), _drawablePosition, Color.White);
         }
 
         private Texture2D GetColorTexture(PlayerColor playerColor)

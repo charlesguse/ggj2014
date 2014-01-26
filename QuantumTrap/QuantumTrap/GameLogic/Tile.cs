@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using OpenTK.Graphics.ES20;
 
 namespace QuantumTrap.GameLogic
 {
@@ -24,18 +23,18 @@ namespace QuantumTrap.GameLogic
         public void LoadContent(ContentManager content)
         {
             _greyTexture = content.Load<Texture2D>("img/blank");
-            _greenTexture = content.Load<Texture2D>("img/blank");
-            _redTexture = content.Load<Texture2D>("img/blank");
-            _blueTexture = content.Load<Texture2D>("img/blank");
-            _yellowTexture = content.Load<Texture2D>("img/blank");
-            _blackTexture = content.Load<Texture2D>("img/blank");
+            _greenTexture = content.Load<Texture2D>("img/green-block");
+            _redTexture = content.Load<Texture2D>("img/red-block");
+            _blueTexture = content.Load<Texture2D>("img/blue-block");
+            _yellowTexture = content.Load<Texture2D>("img/yellow-block");
+            _blackTexture = content.Load<Texture2D>("img/black-block");
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             Rectangle rectangle = new Rectangle(_drawablePosition.X, _drawablePosition.Y, TileSize.X, TileSize.Y);
 
-            spriteBatch.Draw(GetColorTexture(TileType), rectangle, GetColor(TileType));
+            spriteBatch.Draw(GetColorTexture(TileType), rectangle, Color.White);
         }
 
         private Texture2D GetColorTexture(TileType tileType)
@@ -59,21 +58,29 @@ namespace QuantumTrap.GameLogic
 
         private Color GetColor(TileType tileType)
         {
+            Color color;
             switch (tileType)
             {
                 case TileType.Green:
-                    return Color.Green;
+                    color = Color.Green;
+                    break;
                 case TileType.Red:
-                    return Color.Red;
+                    color = Color.Red;
+                    break;
                 case TileType.Blue:
-                    return Color.Blue;
+                    color = Color.Blue;
+                    break;
                 case TileType.Yellow:
-                    return Color.Yellow;
+                    color = Color.Yellow;
+                    break;
                 case TileType.Black:
-                    return Color.DarkGray;
+                    color = Color.DarkGray;
+                    break;
                 default:
-                    return Color.LightGray;
+                    color = Color.LightGray;
+                    break;
             }
+            return color;
         }
     }
 }
