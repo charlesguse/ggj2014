@@ -19,7 +19,7 @@ namespace QuantumTrap
     public class Game1 : Game
     {
         public static int Width = 1280;
-        public static int HEIGHT = 704;
+        public static int Height = 704;
         private const int TargetFrameRate = 60;
 
         private readonly ScreenManager screenManager;
