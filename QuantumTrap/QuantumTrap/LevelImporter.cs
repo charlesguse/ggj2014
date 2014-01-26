@@ -25,6 +25,7 @@ namespace QuantumTrap
         {
             var level = new Level();
 
+            level.backgroundName = GetBackgroundName(levelXml);
             level.PlayerStart = GetObjectPosition(levelXml, "Player");
             level.ShadowStart = GetObjectPosition(levelXml, "Shadow");
             LoadTiles(level, levelXml, "RedTiles", TileType.Red);
@@ -34,6 +35,12 @@ namespace QuantumTrap
             LoadTiles(level, levelXml, "BlackTiles", TileType.Black);
 
             return level;
+        }
+
+        private string GetBackgroundName(XmlDocument levelXml)
+        {
+            var levelNode = levelXml.SelectSingleNode("//level");
+            return levelNode.Attributes["BackgroundName"].Value;
         }
 
         private Position2 GetObjectPosition(XmlDocument levelXml, string objectNodeName)

@@ -16,7 +16,7 @@ namespace QuantumTrap.GameLogic.Managers
         public void LoadContent(ContentManager content, PlayerManager player)
         {
             var importer = new LevelImporter();
-            Level = importer.Import("center");
+            Level = importer.Import("debug");
             Level.LoadContent(content);
             player.Player.Position = Level.PlayerStart;
             player.Player.SetDrawablePosition(player.Player.Position);
@@ -33,9 +33,9 @@ namespace QuantumTrap.GameLogic.Managers
             Level.Update(gameTime);
         }
 
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch, PlayerColor playerColor)
         {
-            Level.Draw(gameTime, spriteBatch);
+            Level.Draw(gameTime, spriteBatch, playerColor);
         }
 
         internal bool CanMoveTo(Position2 potentialPostion, PlayerColor playerColor)

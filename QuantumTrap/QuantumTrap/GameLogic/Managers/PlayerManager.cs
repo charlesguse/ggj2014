@@ -24,13 +24,14 @@ namespace QuantumTrap.GameLogic.Managers
 
         public void Update(GameTime gameTime, LevelManager levelManager)
         {
-            Shadow.Update(gameTime, Player, levelManager);
             Player.Update(gameTime, levelManager);
+            Shadow.Update(gameTime, Player, levelManager);
         }
 
         public void HandleInput(InputState input, PlayerIndex playerIndex)
         {
             Player.HandleInput(input, playerIndex);
+            Shadow.HandleInput(input, playerIndex);
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
