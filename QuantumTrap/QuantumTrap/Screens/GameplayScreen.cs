@@ -33,7 +33,9 @@ namespace QuantumTrap.Screens
         private readonly string _levelFile;
         private readonly int _currentLevel;
         private readonly List<PlayerColor> _colorsAvailable;
-        private Song _music; 
+        private Song _music;
+        TimeSpan _songLength = new TimeSpan(0, 1, 37);
+        private DateTime _songStarted;
 
         #region Fields
         ContentManager _content;
@@ -67,13 +69,13 @@ namespace QuantumTrap.Screens
                 _content = new ContentManager(ScreenManager.Game.Services, "Content");
 
             _gameplayManager.LoadContent(_content);
-            //_music = _content.Load<Song>("music/Bozon Game Music"); 
+            _music = _content.Load<Song>("music/Bozon Game Music 16 bit.wav");
             ScreenManager.Game.ResetElapsedTime();
 
             //if (MediaPlayer.Queue.ActiveSong != _music)
             //{
-            //    MediaPlayer.IsRepeating = true;
-            //    MediaPlayer.Play(_music);
+            MediaPlayer.Play(_music);
+            _songStarted = DateTime.Now;
             //}
         }
 
@@ -110,6 +112,13 @@ namespace QuantumTrap.Screens
 
             if (IsActive)
             {
+                if (DateTime.Now.Subtract(_songStarted) >= _songLength)
+                {
+                    MediaPlayer.Stop();
+                    MediaPlayer.Play(_music);
+                    _songStarted = DateTime.Now;
+                }
+
                 _gameplayManager.Update(gameTime);
 
                 if (_gameplayManager.WinManager.GameWon)
