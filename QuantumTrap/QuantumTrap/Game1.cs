@@ -20,7 +20,7 @@ namespace QuantumTrap
     {
         public static int Width = 1280;
         public static int Height = 704;
-        private const int TargetFrameRate = 60;
+        public const int TargetFrameRate = 60;
 
         private readonly ScreenManager screenManager;
 
