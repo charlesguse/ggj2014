@@ -26,7 +26,6 @@ namespace QuantumTrap.Screens
         private readonly string _levelFile;
         private readonly int _level;
         private readonly List<PlayerColor> _colorsAvailable;
-        private readonly int _currentLevel;
 
         #region Initialization
 

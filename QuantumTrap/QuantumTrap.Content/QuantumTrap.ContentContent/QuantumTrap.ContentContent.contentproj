@@ -229,14 +229,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="music\" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="sfx\Bozon Moving2.wav">
       <Name>Bozon Moving2</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="music\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--
