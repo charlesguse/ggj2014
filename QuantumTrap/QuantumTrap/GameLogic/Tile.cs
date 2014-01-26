@@ -7,11 +7,13 @@ namespace QuantumTrap.GameLogic
     public class Tile : TileBase
     {
         public TileType TileType { get; set; }
+        private Position2 _position;
         private Position2 _drawablePosition;
         private Texture2D _greyTexture, _greenTexture, _redTexture, _blueTexture, _yellowTexture, _blackTexture;
 
         public Tile(Position2 position)
         {
+            _position = position;
             _drawablePosition = ConvertToDrawablePosition(position, TileSize);
         }
 
@@ -30,16 +32,21 @@ namespace QuantumTrap.GameLogic
             _blackTexture = content.Load<Texture2D>("img/black-block");
         }
 
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch, PlayerColor playerColor)
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch, Player player, Shadow shadow)
         {
             if (TileType != GameLogic.TileType.White)
             {
                 Rectangle rectangle = new Rectangle(_drawablePosition.X, _drawablePosition.Y, TileSize.X, TileSize.Y);
 
-                var opacity = (TileIsPlayerColor(TileType, playerColor)) ? 0.5f : 1.0f;
+                var opacity = (TileIsTransparent(player, shadow)) ? 0.5f : 1.0f;
 
                 spriteBatch.Draw(GetColorTexture(TileType), rectangle, Color.White * opacity);
             }
+        }
+
+        private bool TileIsTransparent(Player player, Shadow shadow)
+        {
+            return TileIsPlayerColor(TileType, player.PlayerColor) || (player.Position == _position) || (shadow.Position == _position);
         }
 
         private bool TileIsPlayerColor(TileType tileType, PlayerColor playerColor)

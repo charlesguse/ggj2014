@@ -40,7 +40,7 @@ namespace QuantumTrap.GameLogic.Managers
         {
             spriteBatch.Begin();
 
-            LevelManager.Draw(gameTime, spriteBatch, PlayerManager.Player.PlayerColor);
+            LevelManager.Draw(gameTime, spriteBatch, PlayerManager.Player, PlayerManager.Shadow);
             PlayerManager.Draw(gameTime, spriteBatch);
 
             spriteBatch.End();

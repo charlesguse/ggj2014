@@ -33,9 +33,9 @@ namespace QuantumTrap.GameLogic.Managers
             Level.Update(gameTime);
         }
 
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch, PlayerColor playerColor)
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch, Player player, Shadow shadow)
         {
-            Level.Draw(gameTime, spriteBatch, playerColor);
+            Level.Draw(gameTime, spriteBatch, player, shadow);
         }
 
         internal bool CanMoveTo(Position2 potentialPostion, PlayerColor playerColor)

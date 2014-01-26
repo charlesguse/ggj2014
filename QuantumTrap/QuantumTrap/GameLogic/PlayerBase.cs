@@ -11,6 +11,7 @@ namespace QuantumTrap.GameLogic
 {
     public class PlayerBase : TileBase
     {
+        public const int Speed = 2;
         public Position2 Direction { get; set; }
         public Position2 DrawablePosition { get; set; }
         public Position2 Position { get; set; }
@@ -19,9 +20,9 @@ namespace QuantumTrap.GameLogic
 
         public void Move()
         {
-            DrawablePosition += Direction;
+            DrawablePosition += Direction * Speed;
 
-            DistanceLeftToTravel -= 1;
+            DistanceLeftToTravel -= Speed;
 
             if (DistanceLeftToTravel <= 0)
             {
