@@ -13,10 +13,13 @@ namespace QuantumTrap.GameLogic.Managers
             Level = new Level();
         }
 
-        public void LoadContent(ContentManager content)
+        public void LoadContent(ContentManager content, PlayerManager player, ShadowManager shadow)
         {
             LevelImporter importer = new LevelImporter();
-            this.Level = importer.Import("red_bridge");
+            this.Level = importer.Import("debug");
+            Level.LoadContent(content);
+            player.Player.Position = Level.PlayerStart;
+            //shadow.Position = Level.PlayerStart;
         }
 
         public void Update(GameTime gameTime)

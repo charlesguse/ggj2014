@@ -7,7 +7,7 @@ namespace QuantumTrap.GameLogic.Managers
 {
     public class PlayerManager
     {
-        Player Player { get; set; }
+        public Player Player { get; set; }
 
         public PlayerManager()
         {

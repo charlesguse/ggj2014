@@ -5,16 +5,16 @@
   <BackgroundColor A="255" R="255" G="255" B="255" />
   <GridColor A="255" R="0" G="0" B="0" />
   <LevelDefaultSize>
-    <Width>896</Width>
-    <Height>896</Height>
+    <Width>1280</Width>
+    <Height>704</Height>
   </LevelDefaultSize>
   <LevelMinimumSize>
-    <Width>896</Width>
-    <Height>896</Height>
+    <Width>1280</Width>
+    <Height>704</Height>
   </LevelMinimumSize>
   <LevelMaximumSize>
-    <Width>896</Width>
-    <Height>896</Height>
+    <Width>1280</Width>
+    <Height>704</Height>
   </LevelMaximumSize>
   <Filename>C:\Development\ggj2014\QuantumTrap\QuantumTrap.Content\QuantumTrap.ContentContent\Levels\QuantumTrapLevelProject.oep</Filename>
   <AngleMode>Radians</AngleMode>
@@ -77,7 +77,7 @@
       <ExportMode>Bitstring</ExportMode>
     </LayerDefinition>
     <LayerDefinition xsi:type="GridLayerDefinition">
-      <Name>Green Tiles</Name>
+      <Name>GreenTiles</Name>
       <Grid>
         <Width>64</Width>
         <Height>64</Height>
@@ -90,7 +90,7 @@
       <ExportMode>Bitstring</ExportMode>
     </LayerDefinition>
     <LayerDefinition xsi:type="GridLayerDefinition">
-      <Name>Yellow Tiles</Name>
+      <Name>YellowTiles</Name>
       <Grid>
         <Width>64</Width>
         <Height>64</Height>
