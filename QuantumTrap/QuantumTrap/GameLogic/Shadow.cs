@@ -27,7 +27,7 @@ namespace QuantumTrap.GameLogic
             if (DistanceLeftToTravel > 0)
             {
                 var potentialPostion = Position + Direction;
-                if (levelManager.CanMoveTo(potentialPostion, PlayerColor.Grey))
+                if (levelManager.CanMoveTo(potentialPostion, player.PlayerColor))
                 {
                     Move();
                 }
@@ -39,7 +39,7 @@ namespace QuantumTrap.GameLogic
             else if (DistanceLeftToTravel == 0 && Direction.Sum() != 0)
             {
                 var potentialPostion = Position + Direction;
-                if (levelManager.CanMoveTo(potentialPostion, PlayerColor.Grey))
+                if (levelManager.CanMoveTo(potentialPostion, player.PlayerColor))
                 {
                     DistanceLeftToTravel = DistanceToTravel;
                     Move();

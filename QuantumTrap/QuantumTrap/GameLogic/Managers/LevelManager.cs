@@ -16,7 +16,7 @@ namespace QuantumTrap.GameLogic.Managers
         public void LoadContent(ContentManager content, PlayerManager player)
         {
             var importer = new LevelImporter();
-            Level = importer.Import("debug");
+            Level = importer.Import("center");
             Level.LoadContent(content);
             player.Player.Position = Level.PlayerStart;
             player.Player.SetDrawablePosition(player.Player.Position);
