@@ -1,0 +1,42 @@
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using QuantumTrap.ScreenManagers;
+
+namespace QuantumTrap.GameLogic.Managers
+{
+    public class PlayerManager
+    {
+        Player Player { get; set; }
+        Shadow Shadow { get; set; }
+
+        public PlayerManager()
+        {
+            Player = new Player(Position2.Zero); 
+            Shadow = new Shadow(new Position2{X = 10, Y = 10});
+        }
+
+        public void LoadContent(ContentManager content)
+        {
+            Player.LoadContent(content);
+            Shadow.LoadContent(content);
+        }
+
+        public void Update(GameTime gameTime, LevelManager levelManager)
+        {
+            Player.Update(gameTime, levelManager);
+            Shadow.Update(gameTime, Player, levelManager);
+        }
+
+        public void HandleInput(InputState input, PlayerIndex playerIndex)
+        {
+            Player.HandleInput(input, playerIndex);
+        }
+
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            Shadow.Draw(gameTime, spriteBatch);
+            Player.Draw(gameTime, spriteBatch);
+        }
+    }
+}
