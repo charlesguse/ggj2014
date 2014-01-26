@@ -65,6 +65,14 @@
       <Name>Level 1</Name>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Levels\Level 2.oel">
+      <Name>Level 2</Name>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Levels\Level 3.oel">
+      <Name>Level 3</Name>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Levels\QuantumTrapLevelProject.oep">
       <Name>QuantumTrapLevelProject</Name>
       <Importer>OepImporter</Importer>
@@ -226,6 +234,20 @@
       <Name>Can%27t move there sound</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="img\level-5-background.png">
+      <Name>level-5-background</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="img\story-level-1.png">
+      <Name>story-level-1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
