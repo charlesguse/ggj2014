@@ -30,11 +30,27 @@ namespace QuantumTrap.GameLogic
             _blackTexture = content.Load<Texture2D>("img/black-block");
         }
 
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch, PlayerColor playerColor)
         {
             Rectangle rectangle = new Rectangle(_drawablePosition.X, _drawablePosition.Y, TileSize.X, TileSize.Y);
 
-            spriteBatch.Draw(GetColorTexture(TileType), rectangle, Color.White);
+            var opacity = (TileIsPlayerColor(TileType, playerColor)) ? 0.2f : 1.0f;
+
+            spriteBatch.Draw(GetColorTexture(TileType), rectangle, new Color(Color.White, opacity));
+        }
+
+        private bool TileIsPlayerColor(TileType tileType, PlayerColor playerColor)
+        {
+            if (tileType == TileType.Blue && playerColor == PlayerColor.Blue)
+                return true;
+            if (tileType == TileType.Green && playerColor == PlayerColor.Green)
+                return true;
+            if (tileType == TileType.Yellow && playerColor == PlayerColor.Yellow)
+                return true;
+            if (tileType == TileType.Red && playerColor == PlayerColor.Red)
+                return true;
+
+            return false;
         }
 
         private Texture2D GetColorTexture(TileType tileType)
