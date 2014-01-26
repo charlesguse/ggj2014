@@ -236,13 +236,13 @@
       <Processor>SongProcessor</Processor>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Compile Include="sfx\Winning.wav">
-      <Name>Winning</Name>
+    <Compile Include="sfx\Wrong Color 2.wav">
+      <Name>Wrong Color 2</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
-    <Compile Include="sfx\Wrong Color 2.wav">
-      <Name>Wrong Color 2</Name>
+    <Compile Include="sfx\Winning 2.wav">
+      <Name>Winning 2</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
