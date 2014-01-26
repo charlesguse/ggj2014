@@ -26,10 +26,16 @@ Content\sfx\blip.xnb
 Content\sfx\Bozon Moving.xnb
 Content\sfx\Color Change.xnb
 Content\sfx\Can't move there sound.xnb
+Content\img\story-level-4.xnb
+Content\img\story-level-5.xnb
+Content\img\story-level-end.xnb
+Content\img\title-screen.xnb
 Content\Levels\center.oel
 Content\Levels\debug.oel
 Content\Levels\Level 1.oel
 Content\Levels\Level 2.oel
 Content\Levels\Level 3.oel
+Content\Levels\Level 4.oel
+Content\Levels\Level 5.oel
 Content\Levels\QuantumTrapLevelProject.oep
 Content\Levels\red_bridge.oel
