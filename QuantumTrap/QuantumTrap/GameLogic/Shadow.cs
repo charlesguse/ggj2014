@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using QuantumTrap.GameLogic.Managers;
 
 namespace QuantumTrap.GameLogic
 {
-    class Shadow : PlayerBase
+    public class Shadow : PlayerBase
     {
         private Texture2D _shadowTexture;
 
