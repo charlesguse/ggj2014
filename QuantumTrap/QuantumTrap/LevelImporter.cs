@@ -25,7 +25,7 @@ namespace QuantumTrap
         {
             var level = new Level();
 
-            level.backgroundName = GetBackgroundName(levelXml);
+            level.BackgroundName = GetBackgroundName(levelXml);
             level.PlayerStart = GetObjectPosition(levelXml, "Player");
             level.ShadowStart = GetObjectPosition(levelXml, "Shadow");
             LoadTiles(level, levelXml, "RedTiles", TileType.Red);
