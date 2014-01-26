@@ -19,7 +19,13 @@ namespace QuantumTrap.GameLogic.Managers
             this.Level = importer.Import("debug");
             Level.LoadContent(content);
             player.Player.Position = Level.PlayerStart;
-            //shadow.Position = Level.PlayerStart;
+            player.Player.SetDrawablePosition(player.Player.Position);
+            player.Shadow.Position = Level.ShadowStart;
+            player.Shadow.SetDrawablePosition(player.Shadow.Position);
+        }
+
+        public void LoadLevel(string levelName, PlayerManager playerManager)
+        {
         }
 
         public void Update(GameTime gameTime)

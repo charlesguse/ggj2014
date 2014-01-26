@@ -28,5 +28,10 @@ namespace QuantumTrap.GameLogic
                 Direction = Position2.Zero;
             }
         }
+
+        public void SetDrawablePosition(Position2 Position)
+        {
+            DrawablePosition = ConvertToDrawablePosition(Position, TILE_SIZE);
+        }
     }
 }

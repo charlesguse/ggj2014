@@ -17,7 +17,7 @@ namespace QuantumTrap.GameLogic
         public Shadow(Position2 startingLocation)
         {
             Position = startingLocation;
-            DrawablePosition = ConvertToDrawablePosition(Position, TileSize);
+            SetDrawablePosition(Position);
         }
 
         public void LoadContent(ContentManager content)
