@@ -12,7 +12,7 @@ namespace QuantumTrap.GameLogic.Managers
 
         public void LoadContent(ContentManager content)
         {
-            _wonSfx = new DelayedSoundEffect(content, "sfx/Winning", 5000); ;
+            _wonSfx = new DelayedSoundEffect(content, "sfx/Winning 2", 5000); ;
         }
 
         public void Update(GameTime gameTime,PlayerManager playerManager)
