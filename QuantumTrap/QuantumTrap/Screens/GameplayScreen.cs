@@ -15,6 +15,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using QuantumTrap.GameLogic;
 using QuantumTrap.GameLogic.Managers;
 using QuantumTrap.ScreenManagers;
@@ -32,6 +33,7 @@ namespace QuantumTrap.Screens
         private readonly string _levelFile;
         private readonly int _currentLevel;
         private readonly List<PlayerColor> _colorsAvailable;
+        private Song _music; 
 
         #region Fields
         ContentManager _content;
@@ -65,7 +67,14 @@ namespace QuantumTrap.Screens
                 _content = new ContentManager(ScreenManager.Game.Services, "Content");
 
             _gameplayManager.LoadContent(_content);
+            //_music = _content.Load<Song>("music/Bozon Game Music"); 
             ScreenManager.Game.ResetElapsedTime();
+
+            //if (MediaPlayer.Queue.ActiveSong != _music)
+            //{
+            //    MediaPlayer.IsRepeating = true;
+            //    MediaPlayer.Play(_music);
+            //}
         }
 
 
