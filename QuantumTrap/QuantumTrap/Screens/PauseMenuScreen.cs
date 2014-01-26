@@ -34,7 +34,7 @@ namespace QuantumTrap.Screens
             
             // Hook up menu event handlers.
             resumeGameMenuEntry.Selected += OnCancel;
-            quitGameMenuEntry.Selected += QuitGameMenuEntrySelected;
+            quitGameMenuEntry.Selected += ConfirmQuitMessageBoxAccepted;
 
             // Add entries to the menu.
             MenuEntries.Add(resumeGameMenuEntry);
@@ -48,16 +48,6 @@ namespace QuantumTrap.Screens
         /// <summary>
         /// Event handler for when the Quit Game menu entry is selected.
         /// </summary>
-        void QuitGameMenuEntrySelected(object sender, PlayerIndexEventArgs e)
-        {
-            const string message = "Are you sure you want to quit this game?";
-
-            MessageBoxScreen confirmQuitMessageBox = new MessageBoxScreen(message);
-
-            confirmQuitMessageBox.Accepted += ConfirmQuitMessageBoxAccepted;
-
-            ScreenManager.AddScreen(confirmQuitMessageBox, ControllingPlayer);
-        }
 
 
         /// <summary>
