@@ -26,18 +26,26 @@ namespace QuantumTrap.Screens
     class StoryScreen : MenuScreen
     {
         // Configurable
-        private readonly string[] _levelFiles = { "Level 1", "Level 2", "Level 3" };
-        private readonly string[] _storyBackgroundsFiles = { "img/story-level-1", "img/story-level-2", "img/story-level-3" };
+        private readonly string[] _levelFiles =
+        {
+            "Level 1",
+            "Level 2",
+            "Level 3"
+        };
+
+        private readonly string[] _storyBackgroundsFiles =
+        {
+            "img/story-level-1",
+            "img/story-level-2",
+            "img/story-level-3",
+            "img/story-level-3"
+        };
 
         private List<PlayerColor> GetColorsAvailable(int currentLevel)
         {
             var colorsAvailable = new List<PlayerColor> { PlayerColor.Grey };
 
             if (currentLevel >= 1)
-            {
-
-            }
-
             {
                 colorsAvailable.Add(PlayerColor.Blue);
             }
@@ -133,6 +141,12 @@ namespace QuantumTrap.Screens
             MenuEntries.Add(backToMenuEntry);
         }
         #endregion
+
+        public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
+        {
+            StupidMusicPlayer.LoopMusic(Songs.Gameplay);
+            base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
+        }
 
         #region Handle Input
 
