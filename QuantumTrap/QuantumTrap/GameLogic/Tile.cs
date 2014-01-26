@@ -32,11 +32,14 @@ namespace QuantumTrap.GameLogic
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch, PlayerColor playerColor)
         {
-            Rectangle rectangle = new Rectangle(_drawablePosition.X, _drawablePosition.Y, TileSize.X, TileSize.Y);
+            if (TileType != GameLogic.TileType.White)
+            {
+                Rectangle rectangle = new Rectangle(_drawablePosition.X, _drawablePosition.Y, TileSize.X, TileSize.Y);
 
-            var opacity = (TileIsPlayerColor(TileType, playerColor)) ? 0.2f : 1.0f;
+                var opacity = (TileIsPlayerColor(TileType, playerColor)) ? 0.5f : 1.0f;
 
-            spriteBatch.Draw(GetColorTexture(TileType), rectangle, new Color(Color.White, opacity));
+                spriteBatch.Draw(GetColorTexture(TileType), rectangle, Color.White * opacity);
+            }
         }
 
         private bool TileIsPlayerColor(TileType tileType, PlayerColor playerColor)

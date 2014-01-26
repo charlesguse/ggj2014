@@ -7,9 +7,11 @@ namespace QuantumTrap.GameLogic
 {
     public class Level
     {
+        public string backgroundName { get; set; }
         public Tile[][] TileMap { get; set; }
         public Position2 PlayerStart { get; set; }
         public Position2 ShadowStart { get; set; }
+        private Texture2D _background { get; set; }
 
         public Level()
         {
@@ -29,6 +31,8 @@ namespace QuantumTrap.GameLogic
 
         public void LoadContent(ContentManager content)
         {
+            _background = content.Load<Texture2D>("img/" + backgroundName);
+
             for (int x = 0; x < TileMap.Length; x++)
             {
                 for (int y = 0; y < TileMap[x].Length; y++)
@@ -51,6 +55,7 @@ namespace QuantumTrap.GameLogic
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch, PlayerColor playerColor)
         {
+            spriteBatch.Draw(_background, new Rectangle(0,0,1280,720), Color.White);
             for (int x = 0; x < TileMap.Length; x++)
             {
                 for (int y = 0; y < TileMap[x].Length; y++)

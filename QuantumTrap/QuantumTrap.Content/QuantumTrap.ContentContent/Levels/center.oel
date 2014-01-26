@@ -1,4 +1,4 @@
-<level width="1280" height="704">
+<level width="1280" height="704" BackgroundName="level-1-background">
   <RedTiles exportMode="Bitstring">00000000000000000000
 01100000000000000110
 01000000000000000010
