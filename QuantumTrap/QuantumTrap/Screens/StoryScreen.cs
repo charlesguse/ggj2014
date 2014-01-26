@@ -26,7 +26,7 @@ namespace QuantumTrap.Screens
     {
         // Configurable
         private readonly string[] _levelFiles = { "Level 1", "Level 2", "Level 3" };
-        private readonly string[] _storyBackgroundsFiles = { "img/story-level-1", "img/background", "img/background" };
+        private readonly string[] _storyBackgroundsFiles = { "img/story-level-1", "img/story-level-2", "img/story-level-3" };
 
         private List<PlayerColor> GetColorsAvailable(int currentLevel)
         {
