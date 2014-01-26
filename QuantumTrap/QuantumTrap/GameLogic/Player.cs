@@ -172,7 +172,8 @@ namespace QuantumTrap.GameLogic
                 _decrementingColor = true;
 
             if (input.IsNewKeyPress(Keys.E, playerIndex, out unused)
-                || input.IsNewButtonPress(Buttons.RightShoulder, playerIndex, out unused))
+                || input.IsNewButtonPress(Buttons.RightShoulder, playerIndex, out unused)
+                || input.IsNewKeyPress(Keys.Space, playerIndex, out unused))
                 _incrementingColor = true;
         }
 
