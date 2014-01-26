@@ -211,18 +211,25 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="music\Bozon Game Music 16 bit.wav">
+      <Name>Bozon Game Music 16 bit</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SongProcessor</Processor>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Compile Include="sfx\blip.wav">
       <Name>blip</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
+    <Content Include="music\Bozon Title 16 bit.wav">
+      <Name>Bozon Title 16 bit</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SongProcessor</Processor>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="sfx\Bozon Moving.wav">
-      <Name>Bozon Moving</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
     <Compile Include="sfx\Color Change.wav">
       <Name>Color Change</Name>
       <Importer>WavImporter</Importer>
@@ -232,6 +239,13 @@
   <ItemGroup>
     <Compile Include="sfx\Can%27t move there sound.wav">
       <Name>Can%27t move there sound</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="sfx\Bozon Moving2.wav">
+      <Name>Bozon Moving2</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
