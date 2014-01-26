@@ -15,7 +15,7 @@ namespace QuantumTrap.GameLogic
         int DistanceToTravel { get { return 64; } }
         int DistanceLeftToTravel { get; set; }
         Position2 Direction { get; set; }
-        private Texture2D _playerTexture;
+        private Texture2D _defaultTexture, _greenTexture, _redTexture, _blueTexture, _yellowTexture;
         private Position2 _drawablePosition;
 
         public Player(Position2 startingLocation)
@@ -27,7 +27,11 @@ namespace QuantumTrap.GameLogic
 
         public void LoadContent(ContentManager content)
         {
-            _playerTexture = content.Load<Texture2D>("img/bozon-default");
+            _defaultTexture = content.Load<Texture2D>("img/bozon-default");
+            _greenTexture = content.Load<Texture2D>("img/bozon-green");
+            _redTexture = content.Load<Texture2D>("img/bozon-red");
+            _blueTexture = content.Load<Texture2D>("img/bozon-blue");
+            _yellowTexture = content.Load<Texture2D>("img/bozon-yellow");
         }
 
         public void Update(GameTime gameTime, LevelManager levelManager)
@@ -93,12 +97,24 @@ namespace QuantumTrap.GameLogic
 
         private static PlayerColor DecrementPlayerColor(PlayerColor playerColor)
         {
-            return (PlayerColor)(((int)playerColor - 1) % (int)PlayerColor.Yellow);
+            var newColor = (int) playerColor - 1;
+            const int maxColor = (int) PlayerColor.Yellow;
+            if (newColor < 0)
+            {
+                newColor = maxColor;
+            }
+            return (PlayerColor)newColor;
         }
 
         private static PlayerColor IncrementPlayerColor(PlayerColor playerColor)
         {
-            return (PlayerColor)(((int)playerColor + 1) % (int)PlayerColor.Yellow);
+            var newColor = (int)playerColor + 1;
+            const int maxColor = (int)PlayerColor.Yellow;
+            if (newColor > maxColor)
+            {
+                newColor = 0;
+            }
+            return (PlayerColor)newColor;
         }
 
         private static Position2 GetMovementVector(InputState input, PlayerIndex playerIndex)
@@ -170,7 +186,24 @@ namespace QuantumTrap.GameLogic
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_playerTexture, _drawablePosition, Color.White);
+            spriteBatch.Draw(GetColorTexture(_playerColor), _drawablePosition, Color.White);
+        }
+
+        private Texture2D GetColorTexture(PlayerColor playerColor)
+        {
+            switch (playerColor)
+            {
+                case PlayerColor.Green:
+                    return _greenTexture;
+                case PlayerColor.Red:
+                    return _redTexture;
+                case PlayerColor.Blue:
+                    return _blueTexture;
+                case PlayerColor.Yellow:
+                    return _yellowTexture;
+                default:
+                    return _defaultTexture;
+            }
         }
     }
 }

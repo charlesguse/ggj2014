@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -10,6 +11,7 @@ namespace QuantumTrap.GameLogic
 
         public Level()
         {
+            var random = new Random();
             TileMap = new Tile[20][];
 
             for (int x = 0; x < TileMap.Length; x++)
@@ -17,7 +19,8 @@ namespace QuantumTrap.GameLogic
                 TileMap[x] = new Tile[20];
                 for (int y = 0; y < TileMap[x].Length; y++)
                 {
-                    TileMap[x][y] = new Tile(new Position2{X = x, Y = y});
+                    TileMap[x][y] = new Tile(new Position2 { X = x, Y = y });
+                    TileMap[x][y].TileType = (TileType)random.Next((int)TileType.Black);
                 }
             }
         }
