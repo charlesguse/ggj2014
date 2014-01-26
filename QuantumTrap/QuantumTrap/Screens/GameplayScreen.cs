@@ -93,6 +93,12 @@ namespace QuantumTrap.Screens
             if (IsActive)
             {
                 _gameplayManager.Update(gameTime);
+
+                if (_gameplayManager.WinManager.GameWon)
+                {
+                    LoadingScreen.Load(ScreenManager, false, null, new BackgroundScreen(),
+                                                           new MainMenuScreen());
+                }
             }
         }
 
