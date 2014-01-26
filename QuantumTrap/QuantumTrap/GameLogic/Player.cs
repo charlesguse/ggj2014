@@ -178,6 +178,8 @@ namespace QuantumTrap.GameLogic
 
         private void DecrementPlayerColor(GameTime gameTime)
         {
+            PlayerColorSwitchTimes[_colorsAvailable[_currentColor]] = gameTime.TotalGameTime;
+
             _currentColor = _currentColor - 1;
             int maxColor = _colorsAvailable.Count;
             if (_currentColor < 0)
@@ -190,6 +192,8 @@ namespace QuantumTrap.GameLogic
 
         private void IncrementPlayerColor(GameTime gameTime)
         {
+            PlayerColorSwitchTimes[_colorsAvailable[_currentColor]] = gameTime.TotalGameTime;
+
             _currentColor = _currentColor + 1;
             int maxColor = _colorsAvailable.Count;
             if (_currentColor >= maxColor)

@@ -56,7 +56,7 @@ namespace QuantumTrap.Screens
             if (content == null)
                 content = new ContentManager(ScreenManager.Game.Services, "Content");
 
-            backgroundTexture = content.Load<Texture2D>("img/background");
+            backgroundTexture = content.Load<Texture2D>("img/title-screen");
         }
 
 
