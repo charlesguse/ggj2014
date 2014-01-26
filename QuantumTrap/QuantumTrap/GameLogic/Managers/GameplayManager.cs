@@ -28,7 +28,7 @@ namespace QuantumTrap.GameLogic.Managers
         public void Update(GameTime gameTime)
         {
             PlayerManager.Update(gameTime, LevelManager);
-            LevelManager.Update(gameTime);
+            LevelManager.Update(gameTime, PlayerManager.Player);
             WinManager.Update(PlayerManager);
         }
 
