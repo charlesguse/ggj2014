@@ -1,25 +1,47 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace QuantumTrap.GameLogic
 {
     public class Tile : TileBase
     {
         public TileType TileType { get; set; }
+
+        private const int _tileChangeFlickerTimeMilliseconds = 300;
+        private TimeSpan _elapsedTimeSinceFlickerStart;
+
         private Position2 _position;
         private Position2 _drawablePosition;
         private Texture2D _greyTexture, _greenTexture, _redTexture, _blueTexture, _yellowTexture, _blackTexture;
 
         public Tile(Position2 position)
         {
+            _elapsedTimeSinceFlickerStart = TimeSpan.Zero;
             _position = position;
             _drawablePosition = ConvertToDrawablePosition(position, TileSize);
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, Player player)
         {
-            
+            PlayerColor tilePlayerColor = GetPlayerColor(this.TileType);
+            TimeSpan? timeSwitched = player.PlayerColorSwitchTimes[tilePlayerColor];
+
+            if (timeSwitched.HasValue)
+            {
+                _elapsedTimeSinceFlickerStart = gameTime.TotalGameTime - timeSwitched.Value;
+
+                if (_elapsedTimeSinceFlickerStart.Milliseconds >= _tileChangeFlickerTimeMilliseconds)
+                {
+                    player.PlayerColorSwitchTimes[tilePlayerColor] = null;
+                    _elapsedTimeSinceFlickerStart = TimeSpan.Zero;
+                }
+            }
+            else
+            {
+                _elapsedTimeSinceFlickerStart = TimeSpan.Zero;
+            }
         }
 
         public void LoadContent(ContentManager content)
@@ -38,7 +60,8 @@ namespace QuantumTrap.GameLogic
             {
                 Rectangle rectangle = new Rectangle(_drawablePosition.X, _drawablePosition.Y, TileSize.X, TileSize.Y);
 
-                var opacity = (TileIsTransparent(player, shadow)) ? 0.5f : 1.0f;
+                //var opacity = (TileIsTransparent(player, shadow)) ? 0.5f : 1.0f;
+                float opacity = (float)((TileIsTransparent(player, shadow)) ? (Math.Sin(_elapsedTimeSinceFlickerStart.Milliseconds) / 2) + 0.5 : 1.0);
 
                 spriteBatch.Draw(GetColorTexture(TileType), rectangle, Color.White * opacity);
             }
@@ -104,6 +127,33 @@ namespace QuantumTrap.GameLogic
                     break;
                 default:
                     color = Color.LightGray;
+                    break;
+            }
+            return color;
+        }
+
+        private PlayerColor GetPlayerColor(TileType tileType)
+        {
+            PlayerColor color;
+            switch (tileType)
+            {
+                case TileType.Green:
+                    color = PlayerColor.Green;
+                    break;
+                case TileType.Red:
+                    color = PlayerColor.Red;
+                    break;
+                case TileType.Blue:
+                    color = PlayerColor.Blue;
+                    break;
+                case TileType.Yellow:
+                    color = PlayerColor.Yellow;
+                    break;
+                case TileType.Black:
+                    color = PlayerColor.Grey;
+                    break;
+                default:
+                    color = PlayerColor.Grey;
                     break;
             }
             return color;
