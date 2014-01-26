@@ -54,5 +54,34 @@ namespace QuantumTrap.GameLogic
             var vector = new Vector2 {X = position.X, Y = position.Y};
             return vector;
         }
+
+        public static bool operator ==(Position2 position1, Position2 position2)
+        {
+            return position1.X == position2.X && position1.Y == position2.Y;
+        }
+
+        public static bool operator !=(Position2 position1, Position2 position2)
+        {
+            return !(position1 == position2);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            return obj is Position2 && Equals((Position2) obj);
+        }
+
+        public bool Equals(Position2 other)
+        {
+            return X == other.X && Y == other.Y;
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return (X * 397) ^ Y;
+            }
+        }
     }
 }
