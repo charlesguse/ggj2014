@@ -8,7 +8,11 @@
 #endregion
 
 #region Using Statements
+
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using QuantumTrap.GameLogic;
+
 #endregion
 
 namespace QuantumTrap.Screens
@@ -19,27 +23,39 @@ namespace QuantumTrap.Screens
     /// </summary>
     class PauseMenuScreen : MenuScreen
     {
-        #region Initialization
+        private readonly string _levelFile;
+        private readonly int _level;
+        private readonly List<PlayerColor> _colorsAvailable;
+        private readonly int _currentLevel;
 
+        #region Initialization
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public PauseMenuScreen()
+        /// <param name="currentLevel"></param>
+        public PauseMenuScreen(string levelFile, int level, List<PlayerColor> colorsAvailable)
             : base("Paused")
         {
+            _levelFile = levelFile;
+            _level = level;
+            _colorsAvailable = colorsAvailable;
             // Create our menu entries.
             MenuEntry resumeGameMenuEntry = new MenuEntry("Resume Game");
-            MenuEntry quitGameMenuEntry = new MenuEntry("Quit Game");
+            MenuEntry restartLevelMenuEntry = new MenuEntry("Restart Level");
+            MenuEntry quitMenuEntry = new MenuEntry("Quit To Menu");
             
             // Hook up menu event handlers.
             resumeGameMenuEntry.Selected += OnCancel;
-            quitGameMenuEntry.Selected += ConfirmQuitMessageBoxAccepted;
+            restartLevelMenuEntry.Selected += ConfirmRestartLevelMenuAccepted;
+            quitMenuEntry.Selected += ConfirmQuitMessageBoxAccepted;
 
             // Add entries to the menu.
             MenuEntries.Add(resumeGameMenuEntry);
-            MenuEntries.Add(quitGameMenuEntry);
+            MenuEntries.Add(restartLevelMenuEntry);
+            MenuEntries.Add(quitMenuEntry);
         }
+
         #endregion
 
         #region Handle Input
@@ -48,6 +64,12 @@ namespace QuantumTrap.Screens
         /// <summary>
         /// Event handler for when the Quit Game menu entry is selected.
         /// </summary>
+
+        private void ConfirmRestartLevelMenuAccepted(object sender, PlayerIndexEventArgs e)
+        {
+            LoadingScreen.Load(ScreenManager, true, e.PlayerIndex,
+                new GameplayScreen(_levelFile, _level, _colorsAvailable));
+        }
 
 
         /// <summary>
