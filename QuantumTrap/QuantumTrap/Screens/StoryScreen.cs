@@ -25,7 +25,7 @@ namespace QuantumTrap.Screens
     class StoryScreen : MenuScreen
     {
         // Configurable
-        private readonly string[] _levelFiles = { "debug", "center" };
+        private readonly string[] _levelFiles = { "Level 1", "center" };
         private readonly string[] _storyBackgroundsFiles = { "img/background", "img/background" };
 
         private List<PlayerColor> GetColorsAvailable(int currentLevel)

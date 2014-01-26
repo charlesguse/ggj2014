@@ -61,6 +61,10 @@
       <Name>debug</Name>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Levels\Level 1.oel">
+      <Name>Level 1</Name>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Levels\QuantumTrapLevelProject.oep">
       <Name>QuantumTrapLevelProject</Name>
       <Importer>OepImporter</Importer>
