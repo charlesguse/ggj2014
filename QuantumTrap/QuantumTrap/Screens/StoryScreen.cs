@@ -9,6 +9,7 @@
 
 #region Using Statements
 
+using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -25,8 +26,20 @@ namespace QuantumTrap.Screens
     class StoryScreen : MenuScreen
     {
         // Configurable
-        private readonly string[] _levelFiles = { "Level 1", "Level 2", "Level 3" };
-        private readonly string[] _storyBackgroundsFiles = { "img/story-level-1", "img/story-level-2", "img/story-level-3" };
+        private readonly string[] _levelFiles =
+        {
+            "Level 1",
+            "Level 2",
+            "Level 3"
+        };
+
+        private readonly string[] _storyBackgroundsFiles =
+        {
+            "img/story-level-1",
+            "img/story-level-2",
+            "img/story-level-3",
+            "img/story-level-3"
+        };
 
         private List<PlayerColor> GetColorsAvailable(int currentLevel)
         {
@@ -70,6 +83,11 @@ namespace QuantumTrap.Screens
         public StoryScreen(int currentLevel, bool nextLevel)
             : base("Story")
         {
+            if (_levelFiles.Length + 1 != _storyBackgroundsFiles.Length)
+            {
+                throw new ArgumentOutOfRangeException("There should be one less level than story backgrounds.");
+            }
+
             CurrentLevel = currentLevel;
             _maxLevel = _levelFiles.Length;
 
@@ -124,11 +142,17 @@ namespace QuantumTrap.Screens
         }
         #endregion
 
+        public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
+        {
+            StupidMusicPlayer.LoopMusic(Songs.Gameplay);
+            base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
+        }
+
         #region Handle Input
 
         public void NextLevel()
         {
-            if (CurrentLevel + 1 < _maxLevel)
+            if (CurrentLevel + 1 <= _maxLevel)
             {
                 CurrentLevel++;
             }

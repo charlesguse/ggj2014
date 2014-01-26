@@ -42,6 +42,7 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GameLogic\DelaySoundEffect.cs" />
+    <Compile Include="GameLogic\StupidMusicPlayer.cs" />
     <Compile Include="GameLogic\Level.cs" />
     <Compile Include="GameLogic\Managers\GameplayManager.cs" />
     <Compile Include="GameLogic\Managers\LevelManager.cs" />
@@ -52,6 +53,11 @@
     <Compile Include="GameLogic\Position2.cs" />
     <Compile Include="GameLogic\Managers\WinManager.cs" />
     <Compile Include="GameLogic\Shadow.cs" />
+    <Compile Include="GameLogic\Sprite\Animation.cs" />
+    <Compile Include="GameLogic\Sprite\AnimationBase.cs" />
+    <Compile Include="GameLogic\Sprite\AnimationPlayer.cs" />
+    <Compile Include="GameLogic\Sprite\NoAnimation.cs" />
+    <Compile Include="GameLogic\Sprite\StillAnimation.cs" />
     <Compile Include="GameLogic\Tile.cs" />
     <Compile Include="GameLogic\TileBase.cs" />
     <Compile Include="GameLogic\TileType.cs" />

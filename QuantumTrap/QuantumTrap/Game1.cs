@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.GamerServices;
+using QuantumTrap.GameLogic;
 using QuantumTrap.ScreenManagers;
 using QuantumTrap.Screens;
 #endregion
@@ -46,6 +47,7 @@ namespace QuantumTrap
             // Activate the first screens.
             screenManager.AddScreen(new BackgroundScreen(), null);
             screenManager.AddScreen(new MainMenuScreen(), null);
+            StupidMusicPlayer.Load(Content);
         }
 
         /// <summary>

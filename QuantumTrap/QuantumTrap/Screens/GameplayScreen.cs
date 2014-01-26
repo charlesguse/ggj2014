@@ -15,6 +15,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using QuantumTrap.GameLogic;
 using QuantumTrap.GameLogic.Managers;
 using QuantumTrap.ScreenManagers;
@@ -29,7 +30,9 @@ namespace QuantumTrap.Screens
     /// </summary>
     class GameplayScreen : GameScreen
     {
+        private readonly string _levelFile;
         private readonly int _currentLevel;
+        private readonly List<PlayerColor> _colorsAvailable;
 
         #region Fields
         ContentManager _content;
@@ -47,8 +50,10 @@ namespace QuantumTrap.Screens
         /// </summary>
         public GameplayScreen(string levelFile, int currentLevel, List<PlayerColor> colorsAvailable)
         {
+            _levelFile = levelFile;
             _currentLevel = currentLevel;
-            _gameplayManager = new GameplayManager(levelFile, colorsAvailable);
+            _colorsAvailable = colorsAvailable;
+            _gameplayManager = new GameplayManager(_levelFile, _colorsAvailable);
         }
 
 
@@ -97,6 +102,7 @@ namespace QuantumTrap.Screens
 
             if (IsActive)
             {
+                StupidMusicPlayer.LoopMusic(Songs.Gameplay);
                 _gameplayManager.Update(gameTime);
 
                 if (_gameplayManager.WinManager.GameWon)
@@ -131,7 +137,7 @@ namespace QuantumTrap.Screens
 
             if (input.IsPauseGame(ControllingPlayer) || gamePadDisconnected)
             {
-                ScreenManager.AddScreen(new PauseMenuScreen(), ControllingPlayer);
+                ScreenManager.AddScreen(new PauseMenuScreen(_levelFile, _currentLevel, _colorsAvailable), ControllingPlayer);
             }
             else
             {
