@@ -22,14 +22,17 @@ Content\img\level-5-background.xnb
 Content\img\story-level-1.xnb
 Content\img\story-level-2.xnb
 Content\img\story-level-3.xnb
-Content\sfx\blip.xnb
-Content\sfx\Color Change.xnb
-Content\sfx\Can't move there sound.xnb
 Content\img\story-level-4.xnb
 Content\img\story-level-5.xnb
 Content\img\story-level-end.xnb
 Content\img\title-screen.xnb
+Content\sfx\blip.xnb
+Content\sfx\Wrong Color 2.xnb
+Content\sfx\Winning 2.xnb
+Content\sfx\Color Change.xnb
+Content\sfx\Can't move there sound.xnb
 Content\sfx\Bozon Moving2.xnb
+Content\img\credits-screen.xnb
 Content\music\Bozon Game Music 16 bit.wav
 Content\music\Bozon Title 16 bit.wav
 Content\Levels\center.oel
