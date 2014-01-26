@@ -22,8 +22,8 @@ namespace QuantumTrap.GameLogic.Managers
 
         public void LoadContent(ContentManager content)
         {
+            LevelManager.LoadContent(content, PlayerManager, ShadowManager);
             PlayerManager.LoadContent(content);
-            LevelManager.LoadContent(content);
         }
 
         public void Update(GameTime gameTime)

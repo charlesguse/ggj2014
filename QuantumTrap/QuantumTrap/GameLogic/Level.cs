@@ -8,6 +8,8 @@ namespace QuantumTrap.GameLogic
     public class Level
     {
         public Tile[][] TileMap { get; set; }
+        public Position2 PlayerStart { get; set; }
+        public Position2 ShadowStart { get; set; }
 
         public Level()
         {
@@ -20,7 +22,7 @@ namespace QuantumTrap.GameLogic
                 for (int y = 0; y < TileMap[x].Length; y++)
                 {
                     TileMap[x][y] = new Tile(new Position2 { X = x, Y = y });
-                    TileMap[x][y].TileType = (TileType)random.Next((int)TileType.Black);
+                    TileMap[x][y].TileType = TileType.White;
                 }
             }
         }

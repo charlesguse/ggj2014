@@ -18,16 +18,15 @@ namespace QuantumTrap
 
             var level = BuildLevelFromXml(levelXml);
 
-            return new Level();
+            return level;
         }
 
         private Level BuildLevelFromXml(XmlDocument levelXml)
         {
             var level = new Level();
 
-            var player = levelXml.SelectSingleNode("//Player");
-            //LoadGameObject(level, levelXml, "Player");
-            var shadow = levelXml.SelectSingleNode("//Shadow");
+            level.PlayerStart = GetObjectPosition(levelXml, "Player");
+            level.ShadowStart = GetObjectPosition(levelXml, "Shadow");
             LoadTiles(level, levelXml, "RedTiles", TileType.Red);
             LoadTiles(level, levelXml, "BlueTiles", TileType.Blue);
             LoadTiles(level, levelXml, "GreenTiles", TileType.Green);
@@ -35,6 +34,15 @@ namespace QuantumTrap
             LoadTiles(level, levelXml, "BlackTiles", TileType.Black);
 
             return level;
+        }
+
+        private Position2 GetObjectPosition(XmlDocument levelXml, string objectNodeName)
+        {
+            var objectNode = levelXml.SelectSingleNode("//" + objectNodeName);
+            var x = int.Parse(objectNode.Attributes["x"].Value) / 64;
+            var y = int.Parse(objectNode.Attributes["y"].Value) / 64;
+
+            return new Position2() { X = x, Y = y };
         }
 
         private void LoadTiles(Level level, XmlDocument levelXml, string tileNodeName, TileType tileType)

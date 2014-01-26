@@ -14,7 +14,7 @@ namespace QuantumTrap.GameLogic
         private int _currentColor;
         private List<PlayerColor> _colorsAvailable;
         public PlayerColor PlayerColor { get { return _colorsAvailable[_currentColor]; } }
-        Position2 Position { get; set; }
+        public Position2 Position { get; set; }
         int DistanceToTravel { get { return 64; } }
         int DistanceLeftToTravel { get; set; }
         Position2 Direction { get; set; }

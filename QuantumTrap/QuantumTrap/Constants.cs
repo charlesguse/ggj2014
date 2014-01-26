@@ -8,7 +8,7 @@ namespace QuantumTrap
 {
     public static class Constants
     {
-        public const int LEVEL_HEIGHT = 14;
-        public const int LEVEL_WIDTH = 14;
+        public const int LEVEL_HEIGHT = 11;
+        public const int LEVEL_WIDTH = 20;
     }
 }

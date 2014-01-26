@@ -53,6 +53,10 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
+    <None Include="Levels\debug.oel">
+      <Name>debug</Name>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Levels\QuantumTrapLevelProject.oep">
       <Name>QuantumTrapLevelProject</Name>
       <Importer>OepImporter</Importer>
@@ -102,9 +106,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Levels\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Compile Include="img\bozon-blue.png">
       <Name>bozon-blue</Name>
