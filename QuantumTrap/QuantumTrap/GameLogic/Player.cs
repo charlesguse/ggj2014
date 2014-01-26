@@ -43,32 +43,19 @@ namespace QuantumTrap.GameLogic
         {
             CanMove = true;
 
-            if (DistanceLeftToTravel > 0)
+            var potentialPostion = Position + Direction;
+            if (levelManager.CanMoveTo(potentialPostion, PlayerColor))
             {
-                var potentialPostion = Position + Direction;
-                if (levelManager.CanMoveTo(potentialPostion, PlayerColor))
-                {
-                    Move();
-                }
-                else
-                {
-                    Direction = Position2.Zero;
-                    CanMove = false;
-                }
-            }
-            else if (DistanceLeftToTravel == 0 && Direction.Sum() != 0)
-            {
-                var potentialPostion = Position + Direction;
-                if (levelManager.CanMoveTo(potentialPostion, PlayerColor))
+                if (DistanceLeftToTravel == 0 && Direction.Sum() != 0)
                 {
                     DistanceLeftToTravel = DistanceToTravel;
-                    Move();
                 }
-                else
-                {
-                    Direction = Position2.Zero;
-                    CanMove = false;
-                }
+                Move();
+            }
+            else
+            {
+                Direction = Position2.Zero;
+                CanMove = false;
             }
         }
 
