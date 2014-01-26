@@ -10,11 +10,11 @@ namespace QuantumTrap.GameLogic
     {
         private Texture2D _shadowTexture;
 
-        public Shadow(Position2 startingLocation)
-        {
-            Position = startingLocation;
-            SetDrawablePosition(Position);
-        }
+        //public Shadow(Position2 startingLocation)
+        //{
+        //    Position = startingLocation;
+        //    SetDrawablePosition(Position);
+        //}
 
         public void LoadContent(ContentManager content)
         {

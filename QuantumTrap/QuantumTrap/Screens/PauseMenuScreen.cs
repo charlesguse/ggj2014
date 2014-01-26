@@ -40,8 +40,6 @@ namespace QuantumTrap.Screens
             MenuEntries.Add(resumeGameMenuEntry);
             MenuEntries.Add(quitGameMenuEntry);
         }
-
-
         #endregion
 
         #region Handle Input

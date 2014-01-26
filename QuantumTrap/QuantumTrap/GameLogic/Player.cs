@@ -18,16 +18,11 @@ namespace QuantumTrap.GameLogic
 
         private Texture2D _defaultTexture, _greenTexture, _redTexture, _blueTexture, _yellowTexture;
 
-        public Player(Position2 startingLocation)
+        public Player(List<PlayerColor> colorsAvailable)
         {
-            _colorsAvailable = new List<PlayerColor> { PlayerColor.Grey };
-            _colorsAvailable.Add(PlayerColor.Green);
-            _colorsAvailable.Add(PlayerColor.Red);
-            _colorsAvailable.Add(PlayerColor.Blue);
-            _colorsAvailable.Add(PlayerColor.Yellow);
+            _colorsAvailable = colorsAvailable;
+            
             _currentColor = 0;
-            Position = startingLocation;
-            SetDrawablePosition(Position);
         }
 
         public void LoadContent(ContentManager content)
