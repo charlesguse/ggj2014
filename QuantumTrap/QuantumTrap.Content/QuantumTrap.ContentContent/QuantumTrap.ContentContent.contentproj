@@ -55,7 +55,7 @@
     </Compile>
     <None Include="Levels\QuantumTrapLevelProject.oep">
       <Name>QuantumTrapLevelProject</Name>
-      <Importer>XmlImporter</Importer>
+      <Importer>OepImporter</Importer>
       <Processor>OepProcessor</Processor>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -101,16 +101,8 @@
       <ProcessorParameters_OgmoProjectFile>QuantumTrapLevelProject</ProcessorParameters_OgmoProjectFile>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-<ItemGroup>
-    <ProjectReference Include="..\..\OgmoXNAPipelineExtensions\OgmoXNAPipelineExtensions.csproj">
-      <Project>{81ebfe71-a289-41ca-9cdc-824df6dace1e}</Project>
-      <Name>OgmoXNAPipelineExtensions</Name>
-    </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Levels\" />
-  </ItemGroup>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--
       To modify your build process, add your task inside one of the targets below and uncomment it. 
