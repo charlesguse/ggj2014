@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using QuantumTrap.GameLogic.Managers;
 using QuantumTrap.ScreenManagers;
+using Microsoft.Xna.Framework.Audio;
 
 namespace QuantumTrap.GameLogic
 {
@@ -19,6 +20,8 @@ namespace QuantumTrap.GameLogic
         private bool _decrementingColor { get; set; }
 
         private Texture2D _defaultTexture, _greenTexture, _redTexture, _blueTexture, _yellowTexture;
+        private DelayedSoundEffect _cantMoveSfx;
+        private SoundEffect _changeColorSfx, _cantChangeColorSfx;
 
         public Player(Position2 startingLocation)
         {
@@ -34,6 +37,9 @@ namespace QuantumTrap.GameLogic
 
         public void LoadContent(ContentManager content)
         {
+            _changeColorSfx = content.Load<SoundEffect>("sfx/blip");
+            _cantChangeColorSfx = content.Load<SoundEffect>("sfx/blip");
+            _cantMoveSfx = new DelayedSoundEffect(content, "sfx/blip", 2000);
             _defaultTexture = content.Load<Texture2D>("img/bozon-default");
             _greenTexture = content.Load<Texture2D>("img/bozon-green");
             _redTexture = content.Load<Texture2D>("img/bozon-red");
@@ -46,28 +52,38 @@ namespace QuantumTrap.GameLogic
             var potentialPosition = Position + Direction;
 
             CanMove = true;
-            
-            if (levelManager.CanMoveTo(potentialPosition, PlayerColor))
+
+            if (Direction.Sum() != 0)
             {
-                if (DistanceLeftToTravel == 0 && Direction.Sum() != 0)
+                if (levelManager.CanMoveTo(potentialPosition, PlayerColor))
                 {
-                    DistanceLeftToTravel = DistanceToTravel;
+                    if (DistanceLeftToTravel == 0 && Direction.Sum() != 0)
+                    {
+                        DistanceLeftToTravel = DistanceToTravel;
+                    }
+                    Move();
                 }
-                Move();
-            }
-            else
-            {
-                Direction = Position2.Zero;
-                CanMove = false;
+                else
+                {
+                    Direction = Position2.Zero;
+                    CanMove = false;
+                    _cantMoveSfx.Play(gameTime);
+                }
             }
 
             var canChangeColor = CanChangeColor(levelManager, potentialPosition);
             if ((_incrementingColor || _decrementingColor) && canChangeColor)
             {
+                _changeColorSfx.Play();
+
                 if (_incrementingColor)
                     IncrementPlayerColor();
                 else if (_decrementingColor)
                     DecrementPlayerColor();
+            }
+            else if (_incrementingColor || _decrementingColor)
+            {
+                _cantChangeColorSfx.Play();
             }
 
             _decrementingColor = _incrementingColor = false;

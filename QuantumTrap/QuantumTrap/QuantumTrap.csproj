@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Constants.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="GameLogic\DelaySoundEffect.cs" />
     <Compile Include="GameLogic\Level.cs" />
     <Compile Include="GameLogic\Managers\GameplayManager.cs" />
     <Compile Include="GameLogic\Managers\LevelManager.cs" />
