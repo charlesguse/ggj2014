@@ -9,17 +9,13 @@ using QuantumTrap.ScreenManagers;
 
 namespace QuantumTrap.GameLogic
 {
-    public class Player : TileBase
+    public class Player : PlayerBase
     {
         private int _currentColor;
         private List<PlayerColor> _colorsAvailable;
         public PlayerColor PlayerColor { get { return _colorsAvailable[_currentColor]; } }
-        Position2 Position { get; set; }
-        int DistanceToTravel { get { return 64; } }
-        int DistanceLeftToTravel { get; set; }
-        Position2 Direction { get; set; }
+
         private Texture2D _defaultTexture, _greenTexture, _redTexture, _blueTexture, _yellowTexture;
-        private Position2 _drawablePosition;
 
         public Player(Position2 startingLocation)
         {
@@ -30,7 +26,7 @@ namespace QuantumTrap.GameLogic
             _colorsAvailable.Add(PlayerColor.Yellow);
             _currentColor = 0;
             Position = startingLocation;
-            _drawablePosition = ConvertToDrawablePosition(Position, TileSize);
+            DrawablePosition = ConvertToDrawablePosition(Position, TileSize);
         }
 
         public void LoadContent(ContentManager content)
@@ -51,6 +47,10 @@ namespace QuantumTrap.GameLogic
                 {
                     Move();
                 }
+                else
+                {
+                    Direction = Position2.Zero;
+                }
             }
             else if (DistanceLeftToTravel == 0 && Direction.Sum() != 0)
             {
@@ -60,21 +60,10 @@ namespace QuantumTrap.GameLogic
                     DistanceLeftToTravel = DistanceToTravel;
                     Move();
                 }
-            }
-        }
-
-        private void Move()
-        {
-            _drawablePosition += Direction;
-
-            DistanceLeftToTravel -= 1;
-
-            if (DistanceLeftToTravel <= 0)
-            {
-                DistanceLeftToTravel = 0;
-                Position += Direction;
-                _drawablePosition = ConvertToDrawablePosition(Position, TileSize);
-                Direction = Position2.Zero;
+                else
+                {
+                    Direction = Position2.Zero;
+                }
             }
         }
 
@@ -186,7 +175,7 @@ namespace QuantumTrap.GameLogic
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(GetColorTexture(PlayerColor), _drawablePosition, Color.White);
+            spriteBatch.Draw(GetColorTexture(PlayerColor), DrawablePosition, Color.White);
         }
 
         private Texture2D GetColorTexture(PlayerColor playerColor)

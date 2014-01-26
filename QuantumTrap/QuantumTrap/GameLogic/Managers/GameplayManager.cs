@@ -8,14 +8,12 @@ namespace QuantumTrap.GameLogic.Managers
     public class GameplayManager
     {
         public PlayerManager PlayerManager { get; set; }
-        public ShadowManager ShadowManager { get; set; }
         public LevelManager LevelManager { get; set; }
         public WinManager WinManager { get; set; }
 
         public GameplayManager()
         {
             PlayerManager = new PlayerManager();
-            ShadowManager = new ShadowManager();
             LevelManager = new LevelManager();
             WinManager = new WinManager();
         }
@@ -29,16 +27,13 @@ namespace QuantumTrap.GameLogic.Managers
         public void Update(GameTime gameTime)
         {
             PlayerManager.Update(gameTime, LevelManager);
-            ShadowManager.Update(gameTime, LevelManager);
             LevelManager.Update(gameTime);
-            WinManager.Update(PlayerManager, ShadowManager);
+            WinManager.Update(PlayerManager);
         }
 
         public void HandleInput(InputState input, PlayerIndex playerIndex)
         {
             PlayerManager.HandleInput(input, playerIndex);
-            ShadowManager.HandleInput(input, playerIndex);
-
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -46,7 +41,6 @@ namespace QuantumTrap.GameLogic.Managers
             spriteBatch.Begin();
 
             LevelManager.Draw(gameTime, spriteBatch);
-            ShadowManager.Draw(gameTime, spriteBatch);
             PlayerManager.Draw(gameTime, spriteBatch);
 
             spriteBatch.End();
