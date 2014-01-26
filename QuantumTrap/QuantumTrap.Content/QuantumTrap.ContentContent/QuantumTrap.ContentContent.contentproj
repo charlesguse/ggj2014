@@ -73,6 +73,14 @@
       <Name>Level 3</Name>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Levels\Level 4.oel">
+      <Name>Level 4</Name>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Levels\Level 5.oel">
+      <Name>Level 5</Name>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Levels\QuantumTrapLevelProject.oep">
       <Name>QuantumTrapLevelProject</Name>
       <Importer>OepImporter</Importer>
@@ -258,6 +266,23 @@
     </Compile>
     <Compile Include="img\story-level-3.png">
       <Name>story-level-3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="img\story-level-4.png">
+      <Name>story-level-4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="img\story-level-5.png">
+      <Name>story-level-5</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="img\story-level-end.png">
+      <Name>story-level-end</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
