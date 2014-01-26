@@ -15,6 +15,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using QuantumTrap.GameLogic;
 using QuantumTrap.GameLogic.Managers;
 using QuantumTrap.ScreenManagers;
@@ -29,7 +30,12 @@ namespace QuantumTrap.Screens
     /// </summary>
     class GameplayScreen : GameScreen
     {
+        private readonly string _levelFile;
         private readonly int _currentLevel;
+        private readonly List<PlayerColor> _colorsAvailable;
+        private Song _music;
+        TimeSpan _songLength = new TimeSpan(0, 1, 37);
+        private DateTime _songStarted;
 
         #region Fields
         ContentManager _content;
@@ -47,8 +53,10 @@ namespace QuantumTrap.Screens
         /// </summary>
         public GameplayScreen(string levelFile, int currentLevel, List<PlayerColor> colorsAvailable)
         {
+            _levelFile = levelFile;
             _currentLevel = currentLevel;
-            _gameplayManager = new GameplayManager(levelFile, colorsAvailable);
+            _colorsAvailable = colorsAvailable;
+            _gameplayManager = new GameplayManager(_levelFile, _colorsAvailable);
         }
 
 
@@ -61,7 +69,14 @@ namespace QuantumTrap.Screens
                 _content = new ContentManager(ScreenManager.Game.Services, "Content");
 
             _gameplayManager.LoadContent(_content);
+            _music = _content.Load<Song>("music/Bozon Game Music 16 bit.wav");
             ScreenManager.Game.ResetElapsedTime();
+
+            //if (MediaPlayer.Queue.ActiveSong != _music)
+            //{
+            MediaPlayer.Play(_music);
+            _songStarted = DateTime.Now;
+            //}
         }
 
 
@@ -97,6 +112,13 @@ namespace QuantumTrap.Screens
 
             if (IsActive)
             {
+                if (DateTime.Now.Subtract(_songStarted) >= _songLength)
+                {
+                    MediaPlayer.Stop();
+                    MediaPlayer.Play(_music);
+                    _songStarted = DateTime.Now;
+                }
+
                 _gameplayManager.Update(gameTime);
 
                 if (_gameplayManager.WinManager.GameWon)
@@ -131,7 +153,7 @@ namespace QuantumTrap.Screens
 
             if (input.IsPauseGame(ControllingPlayer) || gamePadDisconnected)
             {
-                ScreenManager.AddScreen(new PauseMenuScreen(), ControllingPlayer);
+                ScreenManager.AddScreen(new PauseMenuScreen(_levelFile, _currentLevel, _colorsAvailable), ControllingPlayer);
             }
             else
             {
