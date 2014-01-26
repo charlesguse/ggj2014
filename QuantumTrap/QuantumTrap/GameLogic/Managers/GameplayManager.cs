@@ -23,13 +23,14 @@ namespace QuantumTrap.GameLogic.Managers
         {
             PlayerManager.LoadContent(content);
             LevelManager.LoadContent(content, PlayerManager);
+            WinManager.LoadContent(content);
         }
 
         public void Update(GameTime gameTime)
         {
             PlayerManager.Update(gameTime, LevelManager);
             LevelManager.Update(gameTime, PlayerManager.Player);
-            WinManager.Update(PlayerManager);
+            WinManager.Update(gameTime, PlayerManager);
         }
 
         public void HandleInput(InputState input, PlayerIndex playerIndex)
