@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using QuantumTrap.GameLogic.Managers;
+using QuantumTrap.ScreenManagers;
 
 namespace QuantumTrap.GameLogic
 {
@@ -22,13 +23,15 @@ namespace QuantumTrap.GameLogic
 
         public void Update(GameTime gameTime, Player player, LevelManager levelManager)
         {
-            Direction = player.Direction * -1;
-
-            if (DistanceLeftToTravel > 0)
+            if (player.CanMove)
             {
                 var potentialPostion = Position + Direction;
                 if (levelManager.CanMoveTo(potentialPostion, player.PlayerColor))
                 {
+                    if (DistanceLeftToTravel == 0 && Direction.Sum() != 0)
+                    {
+                        DistanceLeftToTravel = DistanceToTravel;
+                    }
                     Move();
                 }
                 else
@@ -36,18 +39,13 @@ namespace QuantumTrap.GameLogic
                     Direction = Position2.Zero;
                 }
             }
-            else if (DistanceLeftToTravel == 0 && Direction.Sum() != 0)
+        }
+
+        public void HandleInput(InputState input, PlayerIndex playerIndex)
+        {
+            if (DistanceLeftToTravel == 0)
             {
-                var potentialPostion = Position + Direction;
-                if (levelManager.CanMoveTo(potentialPostion, player.PlayerColor))
-                {
-                    DistanceLeftToTravel = DistanceToTravel;
-                    Move();
-                }
-                else
-                {
-                    Direction = Position2.Zero;
-                }
+                Direction = GetMovementVector(input, playerIndex) * -1;
             }
         }
 
