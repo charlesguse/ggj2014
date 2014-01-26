@@ -9,6 +9,8 @@
 
 #region Using Statements
 using Microsoft.Xna.Framework;
+using QuantumTrap.GameLogic;
+
 #endregion
 
 namespace QuantumTrap.Screens
@@ -67,6 +69,11 @@ namespace QuantumTrap.Screens
             ScreenManager.AddScreen(new CreditsScreen(), e.PlayerIndex);
         }
 
+        public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
+        {
+            StupidMusicPlayer.LoopMusic(Songs.Title);
+            base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
+        }
 
         /// <summary>
         /// When the user cancels the main menu, ask if they want to exit the sample.

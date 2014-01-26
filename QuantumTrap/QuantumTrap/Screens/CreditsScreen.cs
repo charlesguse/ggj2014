@@ -12,6 +12,8 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
+using QuantumTrap.GameLogic;
 using QuantumTrap.ScreenManagers;
 #endregion
 
@@ -84,6 +86,7 @@ namespace QuantumTrap.Screens
         public override void Update(GameTime gameTime, bool otherScreenHasFocus,
                                                        bool coveredByOtherScreen)
         {
+            StupidMusicPlayer.LoopMusic(Songs.Title);
             base.Update(gameTime, otherScreenHasFocus, false);
         }
 
