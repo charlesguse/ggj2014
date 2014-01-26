@@ -29,18 +29,18 @@ namespace QuantumTrap.Screens
         {
             // Create our menu entries.
             MenuEntry playGameMenuEntry = new MenuEntry("Play Game");
-            MenuEntry optionsMenuEntry = new MenuEntry("Options");
-            MenuEntry exitMenuEntry = new MenuEntry("Exit");
+            MenuEntry creditsScreenMenuEntry = new MenuEntry("Credits");
+            //MenuEntry exitMenuEntry = new MenuEntry("Exit");
 
             // Hook up menu event handlers.
             playGameMenuEntry.Selected += PlayGameMenuEntrySelected;
-            optionsMenuEntry.Selected += OptionsMenuEntrySelected;
-            exitMenuEntry.Selected += OnCancel;
+            creditsScreenMenuEntry.Selected += CreditsScreenMenuEntrySelected;
+            //exitMenuEntry.Selected += OnCancel;
 
             // Add entries to the menu.
             MenuEntries.Add(playGameMenuEntry);
-            MenuEntries.Add(optionsMenuEntry);
-            MenuEntries.Add(exitMenuEntry);
+            MenuEntries.Add(creditsScreenMenuEntry);
+            //MenuEntries.Add(exitMenuEntry);
         }
 
 
@@ -55,16 +55,16 @@ namespace QuantumTrap.Screens
         void PlayGameMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
             LoadingScreen.Load(ScreenManager, true, e.PlayerIndex,
-                               new GameplayScreen());
+                               new StoryScreen(0, false));
         }
 
 
         /// <summary>
         /// Event handler for when the Options menu entry is selected.
         /// </summary>
-        void OptionsMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+        void CreditsScreenMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-            ScreenManager.AddScreen(new OptionsMenuScreen(), e.PlayerIndex);
+            ScreenManager.AddScreen(new CreditsScreen(), e.PlayerIndex);
         }
 
 
@@ -73,13 +73,14 @@ namespace QuantumTrap.Screens
         /// </summary>
         protected override void OnCancel(PlayerIndex playerIndex)
         {
-            const string message = "Are you sure you want to exit this sample?";
+            //const string message = "Are you sure you want to exit this sample?";
 
-            MessageBoxScreen confirmExitMessageBox = new MessageBoxScreen(message);
+            //MessageBoxScreen confirmExitMessageBox = new MessageBoxScreen(message);
 
-            confirmExitMessageBox.Accepted += ConfirmExitMessageBoxAccepted;
+            //confirmExitMessageBox.Accepted += ConfirmExitMessageBoxAccepted;
 
-            ScreenManager.AddScreen(confirmExitMessageBox, playerIndex);
+            //ScreenManager.AddScreen(confirmExitMessageBox, playerIndex);
+            ScreenManager.Game.Exit();
         }
 
 

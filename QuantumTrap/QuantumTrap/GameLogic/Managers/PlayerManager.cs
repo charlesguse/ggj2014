@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -10,10 +11,10 @@ namespace QuantumTrap.GameLogic.Managers
         public Player Player { get; set; }
         public Shadow Shadow { get; set; }
 
-        public PlayerManager()
+        public PlayerManager(List<PlayerColor> colorsAvailable)
         {
-            Player = new Player(Position2.Zero); 
-            Shadow = new Shadow(new Position2{X = 10, Y = 10});
+            Player = new Player(colorsAvailable); 
+            Shadow = new Shadow();
         }
 
         public void LoadContent(ContentManager content)

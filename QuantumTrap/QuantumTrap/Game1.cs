@@ -47,7 +47,7 @@ namespace QuantumTrap
 
             // Activate the first screens.
             screenManager.AddScreen(new BackgroundScreen(), null);
-            screenManager.AddScreen(new GameplayScreen(), null);
+            screenManager.AddScreen(new MainMenuScreen(), null);
         }
 
         /// <summary>
