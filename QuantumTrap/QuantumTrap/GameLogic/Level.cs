@@ -41,13 +41,13 @@ namespace QuantumTrap.GameLogic
             }
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, Player player)
         {
             for (int x = 0; x < TileMap.Length; x++)
             {
                 for (int y = 0; y < TileMap[x].Length; y++)
                 {
-                    TileMap[x][y].Update(gameTime);
+                    TileMap[x][y].Update(gameTime, player);
                 }
             }
         }
