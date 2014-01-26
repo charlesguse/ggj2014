@@ -28,5 +28,10 @@ namespace QuantumTrap.GameLogic.Managers
         {
             Level.Draw(gameTime, spriteBatch);
         }
+
+        internal bool CanMoveTo(Position2 potentialPostion, PlayerColor playerColor)
+        {
+            return Level.CanMoveTo(potentialPostion, playerColor);
+        }
     }
 }
