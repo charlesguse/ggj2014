@@ -30,9 +30,9 @@ namespace QuantumTrap.GameLogic.Managers
         {
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, Player player)
         {
-            Level.Update(gameTime);
+            Level.Update(gameTime, player);
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch, Player player, Shadow shadow)
