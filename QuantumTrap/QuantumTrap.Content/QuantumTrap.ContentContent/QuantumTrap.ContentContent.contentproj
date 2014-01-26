@@ -219,6 +219,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="img\credits-screen.png">
+      <Name>credits-screen</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Content Include="music\Bozon Game Music 16 bit.wav">
       <Name>Bozon Game Music 16 bit</Name>
       <Importer>WavImporter</Importer>
