@@ -71,7 +71,8 @@ namespace QuantumTrap.GameLogic
             var canChangeColor = CanChangeColor(levelManager, potentialPosition);
             if ((_incrementingColor || _decrementingColor) && canChangeColor)
             {
-                _changeColorSfx.Play();
+                if (_colorsAvailable.Count > 1)
+                    _changeColorSfx.Play();
 
                 if (_incrementingColor)
                     IncrementPlayerColor();
