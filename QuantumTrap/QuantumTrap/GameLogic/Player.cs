@@ -23,16 +23,11 @@ namespace QuantumTrap.GameLogic
         private DelayedSoundEffect _cantMoveSfx;
         private SoundEffect _movingSfx, _changeColorSfx, _cantChangeColorSfx;
 
-        public Player(Position2 startingLocation)
+        public Player(List<PlayerColor> colorsAvailable)
         {
-            _colorsAvailable = new List<PlayerColor> { PlayerColor.Grey };
-            _colorsAvailable.Add(PlayerColor.Green);
-            _colorsAvailable.Add(PlayerColor.Red);
-            _colorsAvailable.Add(PlayerColor.Blue);
-            _colorsAvailable.Add(PlayerColor.Yellow);
+            _colorsAvailable = colorsAvailable;
+            
             _currentColor = 0;
-            Position = startingLocation;
-            SetDrawablePosition(Position);
         }
 
         public void LoadContent(ContentManager content)

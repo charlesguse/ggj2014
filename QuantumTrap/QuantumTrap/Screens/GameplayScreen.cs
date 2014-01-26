@@ -9,11 +9,13 @@
 
 #region Using Statements
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using QuantumTrap.GameLogic;
 using QuantumTrap.GameLogic.Managers;
 using QuantumTrap.ScreenManagers;
 #endregion
@@ -27,6 +29,8 @@ namespace QuantumTrap.Screens
     /// </summary>
     class GameplayScreen : GameScreen
     {
+        private readonly int _currentLevel;
+
         #region Fields
         ContentManager _content;
 
@@ -41,9 +45,10 @@ namespace QuantumTrap.Screens
         /// <summary>
         /// Constructor.
         /// </summary>
-        public GameplayScreen()
+        public GameplayScreen(string levelFile, int currentLevel, List<PlayerColor> colorsAvailable)
         {
-            _gameplayManager = new GameplayManager();
+            _currentLevel = currentLevel;
+            _gameplayManager = new GameplayManager(levelFile, colorsAvailable);
         }
 
 
@@ -96,8 +101,8 @@ namespace QuantumTrap.Screens
 
                 if (_gameplayManager.WinManager.GameWon)
                 {
-                    LoadingScreen.Load(ScreenManager, false, null, new BackgroundScreen(),
-                                                           new MainMenuScreen());
+                    LoadingScreen.Load(ScreenManager, true, null,
+                               new StoryScreen(_currentLevel, true));
                 }
             }
         }
