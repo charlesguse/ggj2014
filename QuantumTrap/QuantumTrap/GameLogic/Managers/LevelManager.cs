@@ -6,17 +6,19 @@ namespace QuantumTrap.GameLogic.Managers
 {
     public class LevelManager
     {
+        private readonly string _levelFile;
         public Level Level { get; set; }
 
-        public LevelManager()
+        public LevelManager(string levelFile)
         {
+            _levelFile = levelFile;
             Level = new Level();
         }
 
         public void LoadContent(ContentManager content, PlayerManager player)
         {
             var importer = new LevelImporter();
-            Level = importer.Import("center");
+            Level = importer.Import(_levelFile);
             Level.LoadContent(content);
             player.Player.Position = Level.PlayerStart;
             player.Player.SetDrawablePosition(player.Player.Position);

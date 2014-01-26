@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using QuantumTrap.ScreenManagers;
@@ -11,10 +12,10 @@ namespace QuantumTrap.GameLogic.Managers
         public LevelManager LevelManager { get; set; }
         public WinManager WinManager { get; set; }
 
-        public GameplayManager()
+        public GameplayManager(string levelFile, List<PlayerColor> colorsAvailable)
         {
-            PlayerManager = new PlayerManager();
-            LevelManager = new LevelManager();
+            PlayerManager = new PlayerManager(colorsAvailable);
+            LevelManager = new LevelManager(levelFile);
             WinManager = new WinManager();
         }
 
