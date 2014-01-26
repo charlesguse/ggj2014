@@ -9,7 +9,7 @@ namespace QuantumTrap.GameLogic
     {
         public TileType TileType { get; set; }
 
-        private const int _tileChangeFlickerTimeMilliseconds = 300;
+        private const int _tileChangeFlickerTimeMilliseconds = 200;
         private TimeSpan _elapsedTimeSinceFlickerStart;
 
         private Position2 _position;
@@ -60,8 +60,20 @@ namespace QuantumTrap.GameLogic
             {
                 Rectangle rectangle = new Rectangle(_drawablePosition.X, _drawablePosition.Y, TileSize.X, TileSize.Y);
 
-                //var opacity = (TileIsTransparent(player, shadow)) ? 0.5f : 1.0f;
-                float opacity = (float)((TileIsTransparent(player, shadow)) ? (Math.Sin(_elapsedTimeSinceFlickerStart.Milliseconds) / 2) + 0.5 : 1.0);
+                float opacity;
+
+                if (TileIsTransparent(player, shadow) && (player.Position != _position) && (shadow.Position != _position))
+                {
+                    opacity = (float)((Math.Sin(_elapsedTimeSinceFlickerStart.Milliseconds / 4) / 2) + 0.5);
+                }
+                else if (TileIsTransparent(player, shadow)) // player or shadow is on it so dont flicker
+                {
+                    opacity = 0.5f;
+                }
+                else
+                {
+                    opacity = 1.0f;
+                }
 
                 spriteBatch.Draw(GetColorTexture(TileType), rectangle, Color.White * opacity);
             }
@@ -69,7 +81,7 @@ namespace QuantumTrap.GameLogic
 
         private bool TileIsTransparent(Player player, Shadow shadow)
         {
-            return TileIsPlayerColor(TileType, player.PlayerColor) || (player.Position == _position) || (shadow.Position == _position);
+            return TileIsPlayerColor(TileType, player.PlayerColor) || (player.Position == _position) || (shadow.Position == _position) || (TileType != TileType.Black && _elapsedTimeSinceFlickerStart > TimeSpan.Zero);
         }
 
         private bool TileIsPlayerColor(TileType tileType, PlayerColor playerColor)
